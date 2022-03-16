@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="作业实验安装、运行Linux、使用开发环境实验内容：  安装虚以心：virtualbox或vmwAre 在虚以机安装Linux:centos或ubuntu 在Linux,使用编辑器偏辑C语言HelloWorld源代码程序：vim或图形编辑器 在Linux,使用gcc命令编译C程序，运行程序：如果没有gcc,先安装gcc  下载Ubuntu镜像文件下载地址：https:&#x2F;&#x2F;ubuntu.com&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows下安装虚拟机和Ubuntu">
+<meta property="og:url" content="http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="作业实验安装、运行Linux、使用开发环境实验内容：  安装虚以心：virtualbox或vmwAre 在虚以机安装Linux:centos或ubuntu 在Linux,使用编辑器偏辑C语言HelloWorld源代码程序：vim或图形编辑器 在Linux,使用gcc命令编译C程序，运行程序：如果没有gcc,先安装gcc  下载Ubuntu镜像文件下载地址：https:&#x2F;&#x2F;ubuntu.com&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/78129a52ff72808499252decc8767fe6.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/e7909c97d079228191fb6c330f504fc0.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/4ed715bf6388a6905a5c1f23176fa2e5.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/d5d3d925eb379bd91c84d848664999da.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/624b3cfbbc60b09adede181f6b0c2dff.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/bf64cb228ba4bca77542e8f8d133ef5f.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/7e3fde09c31b845c8ea041a95baa71ad.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/83b730fdf3b76954c88d02fc13e39f73.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/6c17595165a191db529ed8ccb3c3cc60.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/559b608abc80a57cac5272d9dd4cffa2.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/485c55ad3802a38f9faeb660d89afb28.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/efd771ce9c04f6ea324bb03e47f590a7.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/9b93383b17a6765fbe12e63fb8295232.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/42749c8ca2807ce423a7cb1d9c4f6587.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/7753b3c45457a9ba97c38731a05c3110.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/23db71df78f290ae583868d27a603df6.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/b7ef9339ac4704d59fd3d4798c069dd2.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/cc09fa30fbd612f22defe41ffdb67836.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/a20a1ed55511e652e452e6d0751752c5.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/d5383794a94356c38c768329c027877d.jpeg@s_0,w_1242">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/d36701c660b25994326c22f0bf15a24f.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/13fb0b4aa351e41acb16cf90f0f954c3.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/6322a21f554c1b7fb0617331df26d1fb.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/4150e853f9e84a75d77f07954d126832.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/0aba897b1fd574a88b6650ffef174be4.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/5429f6829114331b804e6afc7d237097.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/33002be5eb078e605c077564b3f9749a.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/654fcf1a269ad59fd5cd995ef5f222bd.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/46c0baf0bb3287b31cc7934fc74f88cb.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/0f2f380ba1c6ff4f9b5134a09e3cca31.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/0b07b25b48ca9d78e51bfea01d5a09dd.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/bc8576da6c7eac4bf869ce42f17a0867.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/ded932ecba69c1505024dca1817b6329.jpeg">
+<meta property="article:published_time" content="2022-03-16T08:03:28.000Z">
+<meta property="article:modified_time" content="2022-03-16T08:04:33.129Z">
+<meta property="article:author" content="seaEliy">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/78129a52ff72808499252decc8767fe6.jpeg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>windows下安装虚拟机和Ubuntu</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/03/06/2%E6%9C%88%E4%BB%BD%E4%BB%BB%E5%8A%A1%E8%A1%A8%20eb753/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&text=windows下安装虚拟机和Ubuntu"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&is_video=false&description=windows下安装虚拟机和Ubuntu"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=windows下安装虚拟机和Ubuntu&body=Check out this article: http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&name=windows下安装虚拟机和Ubuntu&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&t=windows下安装虚拟机和Ubuntu"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">作业</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDUbuntu%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">下载Ubuntu镜像文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VMware-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">VMware 下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu%E4%B8%8B%E7%BC%96%E5%86%99%E5%B9%B6%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAc%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">Ubuntu下编写并运行第一个c语言程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vim"><span class="toc-number">4.1.</span> <span class="toc-text">安装vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85gcc"><span class="toc-number">4.2.</span> <span class="toc-text">安装gcc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99hello-c%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">4.3.</span> <span class="toc-text">编写hello.c源代码</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        windows下安装虚拟机和Ubuntu
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">seaEliy</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-03-16T08:03:28.000Z" itemprop="datePublished">2022-03-16</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Linux/" rel="tag">Linux</a>, <a class="tag-link-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><p>实验安装、运行Linux、使用开发环境<br>实验内容：</p>
+<ol>
+<li>安装虚以心：virtualbox<br>或vmwAre</li>
+<li>在虚以机安装Linux:centos或ubuntu</li>
+<li>在Linux,使用编辑器偏辑C语言HelloWorld源代码程序：vim或图形编辑器</li>
+<li>在Linux,使用gcc命令编译C程序，运行程序：如果没有gcc,先安装gcc</li>
+</ol>
+<h2 id="下载Ubuntu镜像文件"><a href="#下载Ubuntu镜像文件" class="headerlink" title="下载Ubuntu镜像文件"></a>下载Ubuntu镜像文件</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://ubuntu.com/">https://ubuntu.com/</a></p>
+<ol>
+<li><p>点击上面链接，点击Download<br><img src="https://pic.rmb.bdstatic.com/bjh/78129a52ff72808499252decc8767fe6.jpeg" alt="image.png"></p>
+</li>
+<li><p>点击Ubuntu Desktop<br><img src="https://pic.rmb.bdstatic.com/bjh/e7909c97d079228191fb6c330f504fc0.jpeg" alt="image.png"></p>
+</li>
+<li><p>点击这个<br><img src="https://pic.rmb.bdstatic.com/bjh/4ed715bf6388a6905a5c1f23176fa2e5.jpeg" alt="image.png"></p>
+</li>
+<li><p>我下的是这个<br><img src="https://pic.rmb.bdstatic.com/bjh/d5d3d925eb379bd91c84d848664999da.jpeg" alt="image.png"></p>
+</li>
+<li><p>下载桌面版，下载好之后新建文件夹放好，后面要用到。<br><img src="https://pic.rmb.bdstatic.com/bjh/624b3cfbbc60b09adede181f6b0c2dff.jpeg" alt="image.png"></p>
+</li>
+</ol>
+<h2 id="VMware-下载安装"><a href="#VMware-下载安装" class="headerlink" title="VMware 下载安装"></a>VMware 下载安装</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html</a></p>
+<ol>
+<li><p>下载安装<br><img src="https://pic.rmb.bdstatic.com/bjh/bf64cb228ba4bca77542e8f8d133ef5f.jpeg" alt="image.png"></p>
+</li>
+<li><p>有个输入许可证密钥按钮<br><img src="https://pic.rmb.bdstatic.com/bjh/7e3fde09c31b845c8ea041a95baa71ad.jpeg" alt="image.png"></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 百度的密钥，我已成功，你可以试试。</span></span><br><span class="line"><span class="title class_">YF390</span>-0HF8P-<span class="variable constant_">M81RQ</span>-2DXQE-<span class="variable constant_">M2UT6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开VMware pro，创建新的虚拟机<br><img src="https://pic.rmb.bdstatic.com/bjh/83b730fdf3b76954c88d02fc13e39f73.jpeg" alt="image.png"><br><img src="https://pic.rmb.bdstatic.com/bjh/6c17595165a191db529ed8ccb3c3cc60.jpeg" alt="image.png"></p>
+</li>
+<li><p>选择自定义<br><img src="https://pic.rmb.bdstatic.com/bjh/559b608abc80a57cac5272d9dd4cffa2.jpeg" alt="image.png"></p>
+</li>
+<li><p>下一步再下一步，到这选择稍后安装操作系统<br><img src="https://pic.rmb.bdstatic.com/bjh/485c55ad3802a38f9faeb660d89afb28.jpeg" alt="image.png"></p>
+</li>
+<li><p>选择Linux，版本下来选择Ubuntu64<br><img src="https://pic.rmb.bdstatic.com/bjh/efd771ce9c04f6ea324bb03e47f590a7.jpeg" alt="image.png"></p>
+</li>
+<li><p>选择安装位置，这里必须输入一个已存在的目录，否则后面会报错<br><img src="https://pic.rmb.bdstatic.com/bjh/9b93383b17a6765fbe12e63fb8295232.jpeg" alt="image.png"></p>
+</li>
+<li><p>配置选择默认，下一步<br><img src="https://pic.rmb.bdstatic.com/bjh/42749c8ca2807ce423a7cb1d9c4f6587.jpeg" alt="image.png"></p>
+</li>
+<li><p>默认，下一步<br><img src="https://pic.rmb.bdstatic.com/bjh/7753b3c45457a9ba97c38731a05c3110.jpeg" alt="image.png"></p>
+</li>
+<li><p>默认<br><img src="https://pic.rmb.bdstatic.com/bjh/23db71df78f290ae583868d27a603df6.jpeg" alt="image.png"></p>
+</li>
+<li><p>一直下一步到这<br><img src="https://pic.rmb.bdstatic.com/bjh/b7ef9339ac4704d59fd3d4798c069dd2.jpeg" alt="image.png"></p>
+</li>
+<li><p>下一步到这<br><img src="https://pic.rmb.bdstatic.com/bjh/cc09fa30fbd612f22defe41ffdb67836.jpeg" alt="image.png"></p>
+</li>
+<li><p>选择第一步下载的Ubuntu镜像（即前面下载好的Ubuntu）<br><img src="https://pic.rmb.bdstatic.com/bjh/a20a1ed55511e652e452e6d0751752c5.jpeg" alt="image.png"></p>
+</li>
+<li><p>点击完成，虚拟机到此配置完毕，开启虚拟机<br><img src="https://pic.rmb.bdstatic.com/bjh/d5383794a94356c38c768329c027877d.jpeg@s_0,w_1242" alt="image.png"></p>
+</li>
+<li><p>等加载<br><img src="https://pic.rmb.bdstatic.com/bjh/d36701c660b25994326c22f0bf15a24f.jpeg" alt="image.png"></p>
+</li>
+<li><p>到这里选择中文，点击安装<br><img src="https://pic.rmb.bdstatic.com/bjh/13fb0b4aa351e41acb16cf90f0f954c3.jpeg" alt="image.png"></p>
+</li>
+<li><p>双击选择的键盘布局chinese<br><img src="https://pic.rmb.bdstatic.com/bjh/6322a21f554c1b7fb0617331df26d1fb.jpeg" alt="image.png"></p>
+</li>
+<li><p>到这默认<br><img src="https://pic.rmb.bdstatic.com/bjh/4150e853f9e84a75d77f07954d126832.jpeg" alt="image.png"></p>
+</li>
+<li><p>点击现在安装，一直继续，等<br><img src="https://pic.rmb.bdstatic.com/bjh/0aba897b1fd574a88b6650ffef174be4.jpeg" alt="image.png"></p>
+</li>
+<li><p>选择上海<br><img src="https://pic.rmb.bdstatic.com/bjh/5429f6829114331b804e6afc7d237097.jpeg" alt="image.png"></p>
+</li>
+<li><p>设置用户名和密码<br><img src="https://pic.rmb.bdstatic.com/bjh/33002be5eb078e605c077564b3f9749a.jpeg" alt="image.png"></p>
+</li>
+<li><p>正式安装，等待一段时间<br><img src="https://pic.rmb.bdstatic.com/bjh/654fcf1a269ad59fd5cd995ef5f222bd.jpeg" alt="image.png"></p>
+</li>
+<li><p>安装完成（可以打开浏览器检查一下网络是否可用）<br><img src="https://pic.rmb.bdstatic.com/bjh/46c0baf0bb3287b31cc7934fc74f88cb.jpeg" alt="image.png"></p>
+</li>
+</ol>
+<h2 id="Ubuntu下编写并运行第一个c语言程序"><a href="#Ubuntu下编写并运行第一个c语言程序" class="headerlink" title="Ubuntu下编写并运行第一个c语言程序"></a>Ubuntu下编写并运行第一个c语言程序</h2><p>使用快捷键<code>Ctrl+Alt+T</code>打开控制台;</p>
+<h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><p>在控制台输入 <code>sudo apt-get install vim</code>,遇到输入密码时回车</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/0f2f380ba1c6ff4f9b5134a09e3cca31.jpeg" alt="image.png"></p>
+<h3 id="安装gcc"><a href="#安装gcc" class="headerlink" title="安装gcc"></a>安装gcc</h3><p>在控制台输入<code>sudo apt-get install g++</code></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/0b07b25b48ca9d78e51bfea01d5a09dd.jpeg" alt="image.png"></p>
+<h3 id="编写hello-c源代码"><a href="#编写hello-c源代码" class="headerlink" title="编写hello.c源代码"></a>编写hello.c源代码</h3><ol>
+<li><p>同样在控制台，输入 <code>vim hello.c</code></p>
+</li>
+<li><p>按<code>i</code>键进入insert模式（即编辑输入模式），写入如下经典代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the first program hello.c</span></span><br><span class="line">#include&lt;stdio.<span class="property">h</span>&gt;</span><br><span class="line">int <span class="title function_">main</span>(<span class="params"><span class="keyword">void</span></span>)&#123;</span><br><span class="line">  <span class="title function_">printf</span>(<span class="string">&quot;Hello,world!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic.rmb.bdstatic.com/bjh/bc8576da6c7eac4bf869ce42f17a0867.jpeg" alt="image.png"></p>
+</li>
+<li><p>输入完成后，按 <code>Esc</code> 键回到normal模式，随后键入<code>:wq</code> 保存退出vim。</p>
+</li>
+<li><p>编译hello.c,在终端执行 <code>g++ hello.c -o hello</code> 编译。</p>
+</li>
+<li><p>运行程序hello，键入 <code>./hello</code> 就可以看到结果。<br><img src="https://pic.rmb.bdstatic.com/bjh/ded932ecba69c1505024dca1817b6329.jpeg" alt="image.png"></p>
+</li>
+</ol>
+<p>至此，完成。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">作业</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDUbuntu%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">下载Ubuntu镜像文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VMware-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">VMware 下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu%E4%B8%8B%E7%BC%96%E5%86%99%E5%B9%B6%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAc%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">Ubuntu下编写并运行第一个c语言程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vim"><span class="toc-number">4.1.</span> <span class="toc-text">安装vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85gcc"><span class="toc-number">4.2.</span> <span class="toc-text">安装gcc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99hello-c%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">4.3.</span> <span class="toc-text">编写hello.c源代码</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&text=windows下安装虚拟机和Ubuntu"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&is_video=false&description=windows下安装虚拟机和Ubuntu"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=windows下安装虚拟机和Ubuntu&body=Check out this article: http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&title=windows下安装虚拟机和Ubuntu"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&name=windows下安装虚拟机和Ubuntu&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/&t=windows下安装虚拟机和Ubuntu"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    seaEliy
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
