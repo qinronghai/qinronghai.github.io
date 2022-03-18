@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本小项目的由来因为我们学校每天晚上11点都会断网，所以第二天想用网络必须手动登录一下校园网。有时候早上起来没开电脑，就没有登录校园网，然后就没有wifi可以使用。 而且很懒得每天都要点击那么几下登录校园网，所以立了这小项目。 我想要的需求 每天早上6点30左右电脑自动开机。（晚上可以不用关机，使用待机应该也可以） 电脑每天定时自动登录校园网—-windows自带的任务计划实现。  如何实现电脑定点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python实现自动化登录校园网">
+<meta property="og:url" content="http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="本小项目的由来因为我们学校每天晚上11点都会断网，所以第二天想用网络必须手动登录一下校园网。有时候早上起来没开电脑，就没有登录校园网，然后就没有wifi可以使用。 而且很懒得每天都要点击那么几下登录校园网，所以立了这小项目。 我想要的需求 每天早上6点30左右电脑自动开机。（晚上可以不用关机，使用待机应该也可以） 电脑每天定时自动登录校园网—-windows自带的任务计划实现。  如何实现电脑定点">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/892caaaf15974f61d967a8308d2cfe7d.png">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/e686a7e0775a8770fa3067ba0e436dfb.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/0445077b2fa5a33b0bb24a01f607147d.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/aee8fba820e5ef61f84effa0bd9ff8aa.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c57652369a8f8c3c902b51a2ece3bee8.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/2842e0af876d3e79a00c6d62564dfb31.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/6e0d6fe080b5094fc64b9f1208e0ae7a.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/b13a1be7c530394f62db8c9a46bbd54c.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/8b6cba6b24fb679439c7755badbbde3d.jpeg">
+<meta property="article:published_time" content="2022-03-18T07:36:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T07:50:00.656Z">
+<meta property="article:author" content="seaEliy">
+<meta property="article:tag" content="自动登录校园网">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="小项目">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/892caaaf15974f61d967a8308d2cfe7d.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>python实现自动化登录校园网</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/03/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA+Ubuntu/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&text=python实现自动化登录校园网"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&is_video=false&description=python实现自动化登录校园网"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python实现自动化登录校园网&body=Check out this article: http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&name=python实现自动化登录校园网&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&t=python实现自动化登录校园网"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%B0%8F%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-number">1.</span> <span class="toc-text">本小项目的由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E7%9A%84%E9%9C%80%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">我想要的需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%94%B5%E8%84%91%E5%AE%9A%E7%82%B9%E5%BC%80%E6%9C%BA"><span class="toc-number">3.</span> <span class="toc-text">如何实现电脑定点开机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">登录原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E7%99%BB%E5%BD%95%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">如何查看自己的登录信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="toc-number">6.</span> <span class="toc-text">代码部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95"><span class="toc-number">7.</span> <span class="toc-text">准自动化实现登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86-bat%E8%BF%90%E8%A1%8CPython%E8%84%9A%E6%9C%AC"><span class="toc-number">7.1.</span> <span class="toc-text">批处理.bat运行Python脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F"><span class="toc-number">7.2.</span> <span class="toc-text">Windows任务计划程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quicker%E5%BF%AB%E6%8D%B7%E5%AE%9E%E7%8E%B0"><span class="toc-number">7.3.</span> <span class="toc-text">Quicker快捷实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%8A%A8%E4%BD%9C%E5%BA%93"><span class="toc-number">7.3.1.</span> <span class="toc-text">添加到动作库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">8.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">9.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        python实现自动化登录校园网
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">seaEliy</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-03-18T07:36:47.000Z" itemprop="datePublished">2022-03-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>, <a class="tag-link-link" href="/tags/%E5%B0%8F%E9%A1%B9%E7%9B%AE/" rel="tag">小项目</a>, <a class="tag-link-link" href="/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E6%A0%A1%E5%9B%AD%E7%BD%91/" rel="tag">自动登录校园网</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="本小项目的由来"><a href="#本小项目的由来" class="headerlink" title="本小项目的由来"></a>本小项目的由来</h2><p>因为我们学校每天晚上11点都会断网，所以第二天想用网络必须手动登录一下校园网。有时候早上起来没开电脑，就没有登录校园网，然后就没有wifi可以使用。</p>
+<p>而且很懒得每天都要点击那么几下登录校园网，所以立了这小项目。</p>
+<h2 id="我想要的需求"><a href="#我想要的需求" class="headerlink" title="我想要的需求"></a>我想要的需求</h2><ol>
+<li>每天早上6点30左右电脑自动开机。（晚上可以不用关机，使用待机应该也可以）</li>
+<li>电脑每天定时自动登录校园网—-windows自带的任务计划实现。</li>
+</ol>
+<h2 id="如何实现电脑定点开机"><a href="#如何实现电脑定点开机" class="headerlink" title="如何实现电脑定点开机"></a>如何实现电脑定点开机</h2><p>常见的实现方法：</p>
+<ol>
+<li><p><code>bios</code>中的电源管理实现</p>
+<p> 忙活查了一些教程，笔记本实现不了自动定时开机，没有<code>Resume by Alarm</code>功能。</p>
+</li>
+<li><p>智能插座通电后自动开机</p>
+<p> 这是打了联想的人工（小哥人很好），得知的另一种方法。但是我这台联想小新也实现不了 。</p>
+</li>
+</ol>
+<p>一般到这，基本上没什么别的方法了，是不是改放弃了？不是的，既然笔记本电脑无法定时开机，只能退一步另想别的方法了。</p>
+<h2 id="登录原理"><a href="#登录原理" class="headerlink" title="登录原理"></a>登录原理</h2><p>只需要模拟登录操作，即发送请求即可。我们学校只需要发送一个get请求（我记得去年还是post）即可。是很简单的，大佬勿笑。</p>
+<h2 id="如何查看自己的登录信息"><a href="#如何查看自己的登录信息" class="headerlink" title="如何查看自己的登录信息"></a>如何查看自己的登录信息</h2><p>这部分是必须。</p>
+<p>打开<a target="_blank" rel="noopener" href="http://10.0.9.35/a79.htm?wlanuserip=10.208.28.190&wlanacname=ME60&wlanacip=10.0.9.33">湾大校园网络认证系统</a>，未登录状态下按下<code>F12</code>打开调试工具，找到Network选项卡。<br><img src="https://pic.rmb.bdstatic.com/bjh/892caaaf15974f61d967a8308d2cfe7d.png" alt="image.png"><br>随后输入密码，点击下面这个查看Payload对应代码部分的个人登录信息<br><img src="https://pic.rmb.bdstatic.com/bjh/e686a7e0775a8770fa3067ba0e436dfb.jpeg" alt="image.png"><br>查看Headers对应代码部分的填充请求头信息<br><img src="https://pic.rmb.bdstatic.com/bjh/0445077b2fa5a33b0bb24a01f607147d.jpeg" alt="image.png"></p>
+<p>按照上面的部分修改代码即可</p>
+<h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><ul>
+<li>需要能运行python的环境</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64 <span class="comment">#.bat文件需要引入</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录地址url</span></span><br><span class="line">url = <span class="string">&quot;http://10.0.9.35:801/eportal/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 填充请求头信息</span></span><br><span class="line">get_headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;*/*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;gzip,deflate&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;zh-CN,zh;q=0.9,en;q=0.8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Connection&#x27;</span>: <span class="string">&#x27;keep-alive&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;xxxxxxxxxxxxxxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;10.0.9.35:801&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;xxxxxxxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;xxxxxxxxxxxxxxxxxxxxxxxx&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 个人登录数据</span></span><br><span class="line">person_data = &#123;</span><br><span class="line">    <span class="string">&#x27;c&#x27;</span>: <span class="string">&#x27;Portal&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;a&#x27;</span>: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;callback&#x27;</span>: <span class="string">&#x27;dr1004&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;login_method&#x27;</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user_account&#x27;</span>: <span class="string">&#x27;,0,xxxxxxxxxx@telecom&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user_password&#x27;</span>: <span class="string">&#x27;xxxxxxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;wlan_user_ip&#x27;</span>: <span class="string">&#x27;xxxxxxxxxxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;wlan_user_ipv6&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;wlan_user_mac&#x27;</span>: <span class="string">&#x27;000000000000&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;wlan_ac_ip&#x27;</span>: <span class="string">&#x27;xxxxxxxxxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;wlan_ac_name&#x27;</span>: <span class="string">&#x27;ME60&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;jsVersion&#x27;</span>: <span class="string">&#x27;3.3.3&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解决了“[WinError 10061] 由于目标计算机积极拒绝，无法连接。”的问题--在这个问题上花了很长的时间。</span></span><br><span class="line"><span class="comment"># 禁用代理 ***</span></span><br><span class="line">proxies = &#123;<span class="string">&quot;http&quot;</span>: <span class="literal">None</span>, <span class="string">&quot;https&quot;</span>: <span class="literal">None</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送get请求登录网页</span></span><br><span class="line">res = requests.get(url=url, headers=get_headers,</span><br><span class="line">                    params=person_data, proxies=proxies)</span><br><span class="line"></span><br><span class="line">response = res.status_code</span><br><span class="line"><span class="keyword">if</span> response == <span class="number">200</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;连接成功 响应码为&#123;&#125;&quot;</span>.<span class="built_in">format</span>(response))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;连接失败 响应码为&#123;&#125;&quot;</span>.<span class="built_in">format</span>(response))</span><br></pre></td></tr></table></figure>
+
+<p>基于这python的代码脚本，本次小项目的核心部分完成了。那么可以有多少种实现方案呢？</p>
+<h2 id="准自动化实现登录"><a href="#准自动化实现登录" class="headerlink" title="准自动化实现登录"></a>准自动化实现登录</h2><h3 id="批处理-bat运行Python脚本"><a href="#批处理-bat运行Python脚本" class="headerlink" title="批处理.bat运行Python脚本"></a>批处理.bat运行Python脚本</h3><p>新建后缀名为<code>.bat</code>的文件，放入与上面autologin.py文件相同的目录，输入以下内容即可。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">python autologin.py</span><br></pre></td></tr></table></figure>
+
+<p>把图中的文件放到桌面点击就行，或者右键创建快捷方式。</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/aee8fba820e5ef61f84effa0bd9ff8aa.jpeg" alt="image.png"></p>
+<h3 id="Windows任务计划程序"><a href="#Windows任务计划程序" class="headerlink" title="Windows任务计划程序"></a>Windows任务计划程序</h3><p>给一篇参考，前面的基本操作都一样，不一样的我都在下面放图了。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_37967865/article/details/81838113">https://blog.csdn.net/sinat_37967865/article/details/81838113</a></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/c57652369a8f8c3c902b51a2ece3bee8.jpeg" alt="image.png"></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/2842e0af876d3e79a00c6d62564dfb31.jpeg" alt="image.png"></p>
+<h3 id="Quicker快捷实现"><a href="#Quicker快捷实现" class="headerlink" title="Quicker快捷实现"></a>Quicker快捷实现</h3><p>首先你的电脑得下载Quicker这个软件，然后看看它的使用教程，网上有很多，这里不在赘述。</p>
+<p>Quicker官网：<a target="_blank" rel="noopener" href="https://getquicker.net/">https://getquicker.net/</a></p>
+<h4 id="添加到动作库"><a href="#添加到动作库" class="headerlink" title="添加到动作库"></a>添加到动作库</h4><p><img src="https://pic.rmb.bdstatic.com/bjh/6e0d6fe080b5094fc64b9f1208e0ae7a.jpeg" alt="image.png"><br><img src="https://pic.rmb.bdstatic.com/bjh/b13a1be7c530394f62db8c9a46bbd54c.jpeg" alt="image.png"><br>添加好之后就可以中建点击动作启动了<br><img src="https://pic.rmb.bdstatic.com/bjh/8b6cba6b24fb679439c7755badbbde3d.jpeg" alt="image.png"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>此小项目已上传<a target="_blank" rel="noopener" href="https://github.com/qinronghai/bbgu-autologin-school-net/tree/master">GitHub的仓库</a>，下载之后修改一下就可以用了。</p>
+<p>目前到这只完成了准自动化，也就是还要双击一下的。看了很多文章，可以用手机等实现，但是时间成本太高，懒得学了，以后再说吧。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://codeantenna.com/a/at2eaS6i4D">python requests 由于目标计算机积极拒绝，无法连接</a> 感谢这篇文章：解决了困扰我很久的“[WinError 10061] 由于目标计算机积极拒绝，无法连接。”的问题</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/364016452">校园网自动登录全平台解决方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://yharea.com/421">实现校园网自动化登录 ——Python&#x2F;cURL 脚本 + 任务计划 &#x2F; Tasker&amp;Termux（Windows&#x2F;Android)&#x2F;Selenium</a></li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%B0%8F%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-number">1.</span> <span class="toc-text">本小项目的由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E6%83%B3%E8%A6%81%E7%9A%84%E9%9C%80%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">我想要的需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%94%B5%E8%84%91%E5%AE%9A%E7%82%B9%E5%BC%80%E6%9C%BA"><span class="toc-number">3.</span> <span class="toc-text">如何实现电脑定点开机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">登录原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E7%99%BB%E5%BD%95%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">如何查看自己的登录信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="toc-number">6.</span> <span class="toc-text">代码部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95"><span class="toc-number">7.</span> <span class="toc-text">准自动化实现登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86-bat%E8%BF%90%E8%A1%8CPython%E8%84%9A%E6%9C%AC"><span class="toc-number">7.1.</span> <span class="toc-text">批处理.bat运行Python脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F"><span class="toc-number">7.2.</span> <span class="toc-text">Windows任务计划程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quicker%E5%BF%AB%E6%8D%B7%E5%AE%9E%E7%8E%B0"><span class="toc-number">7.3.</span> <span class="toc-text">Quicker快捷实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%8A%A8%E4%BD%9C%E5%BA%93"><span class="toc-number">7.3.1.</span> <span class="toc-text">添加到动作库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">8.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">9.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&text=python实现自动化登录校园网"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&is_video=false&description=python实现自动化登录校园网"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python实现自动化登录校园网&body=Check out this article: http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&title=python实现自动化登录校园网"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&name=python实现自动化登录校园网&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/&t=python实现自动化登录校园网"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    seaEliy
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
