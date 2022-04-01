@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="前情概要一个需求，需要一个视频中的说话的文本。 过程小记找了一个开源软件–VideoSrt: https:&#x2F;&#x2F;github.com&#x2F;wxbool&#x2F;video-srt-windows  这个软件用到了很多接口，需要配置阿里云。     过程比较麻烦，在上面的网址中有教程，教程中有视频，感兴趣自行研究。 对了，在这个使用软件的过程中，不支持腾讯视频下载的.qlv格式的视频转换。要转换成mp4之类的格式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小记-提取视频中音频的文本">
+<meta property="og:url" content="https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="前情概要一个需求，需要一个视频中的说话的文本。 过程小记找了一个开源软件–VideoSrt: https:&#x2F;&#x2F;github.com&#x2F;wxbool&#x2F;video-srt-windows  这个软件用到了很多接口，需要配置阿里云。     过程比较麻烦，在上面的网址中有教程，教程中有视频，感兴趣自行研究。 对了，在这个使用软件的过程中，不支持腾讯视频下载的.qlv格式的视频转换。要转换成mp4之类的格式">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/a5d022aafe8e5a20282de2fc6304f9b3.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/3715823c91cd31c9e3948965ee774a79.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/24e2de7393c7fc64717527562f4c56a9.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/e85b5ea1e7c6599726b8581b81286fc9.jpeg@s_0,w_2000">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/ae580318448485bf69e45e37ee782b48.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/bd2e709365eaf38541a7f6e0feed32d5.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/e06cd3a7ec38b5fdb09f82a5f0324566.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/658c55405e92ac15d6c0b4e959bd1f47.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/952d9db92afcf901fcfbff24a7b8da24.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/9e0cbcc08c370fa9f06ed4bbc83f4030.jpeg@s_0,w_2000">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/79790d1efe48b19965c6b1bec4a90752.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/f12aeda1f7c1090a161aa53875b6808d.jpeg@s_0,w_2000">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/a308730fc646c0b8fca7f4f48768acf9.jpeg@s_0,w_2000">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c5b62f6d754ca4376a5ba40bb6ef9402.jpeg@s_0,w_2000">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/4789a12546ec143b1941554e892fa015.jpeg">
+<meta property="article:published_time" content="2022-04-01T03:04:11.000Z">
+<meta property="article:modified_time" content="2022-04-01T03:07:36.556Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="小记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/a5d022aafe8e5a20282de2fc6304f9b3.jpeg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>小记-提取视频中音频的文本</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/03/31/2022%E5%B9%B43%E6%9C%88%E6%80%BB%E7%BB%93/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&text=小记-提取视频中音频的文本"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&is_video=false&description=小记-提取视频中音频的文本"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=小记-提取视频中音频的文本&body=Check out this article: https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&name=小记-提取视频中音频的文本&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&t=小记-提取视频中音频的文本"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%83%85%E6%A6%82%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">前情概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E5%B0%8F%E8%AE%B0"><span class="toc-number">2.</span> <span class="toc-text">过程小记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E5%AD%97%E5%B9%95"><span class="toc-number">2.0.1.</span> <span class="toc-text">自动识别字幕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%BE%E5%88%B0json%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.2.</span> <span class="toc-text">找到json文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%BD%91%E7%AB%99%E8%BD%AC%E6%8D%A2%E6%8F%90%E5%8F%96str%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.3.</span> <span class="toc-text">使用网站转换提取str文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86str%E6%96%87%E4%BB%B6%E8%BD%AC%E6%88%90txt"><span class="toc-number">2.0.4.</span> <span class="toc-text">将str文件转成txt</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E6%88%90%E5%8A%9F"><span class="toc-number">3.</span> <span class="toc-text">最后成功</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        小记-提取视频中音频的文本
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-01T03:04:11.000Z" itemprop="datePublished">2022-04-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%B0%8F%E8%AE%B0/" rel="tag">小记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="前情概要"><a href="#前情概要" class="headerlink" title="前情概要"></a>前情概要</h2><p>一个需求，需要一个视频中的说话的文本。</p>
+<h2 id="过程小记"><a href="#过程小记" class="headerlink" title="过程小记"></a>过程小记</h2><p>找了一个开源软件–<code>VideoSrt</code>: <a target="_blank" rel="noopener" href="https://github.com/wxbool/video-srt-windows">https://github.com/wxbool/video-srt-windows</a></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/a5d022aafe8e5a20282de2fc6304f9b3.jpeg" alt="image.png"></p>
+<p>这个软件用到了很多接口，需要配置阿里云。</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/3715823c91cd31c9e3948965ee774a79.jpeg" alt="image.png"></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/24e2de7393c7fc64717527562f4c56a9.jpeg" alt="image.png"></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/e85b5ea1e7c6599726b8581b81286fc9.jpeg@s_0,w_2000" alt="image.png"></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/ae580318448485bf69e45e37ee782b48.jpeg" alt="image.png"></p>
+<p>过程比较麻烦，在上面的网址中有教程，教程中有视频，感兴趣自行研究。</p>
+<p>对了，在这个使用软件的过程中，不支持腾讯视频下载的<code>.qlv</code>格式的视频转换。要转换成<code>mp4</code>之类的格式才能转换。</p>
+<p>所以，又找了很多的在线转格式的网站，和下载了两个转格式的软件。全部都不支持qlv转mp4。</p>
+<p>最后，想着重新下载格式为mp4的对应视频，找到了youtube，但是youtube不能下载视频，需要在线的下载破解网站和对应的破解软件。尝试了几个网站之后，都下载不了，在这过程中发现很多这种类似的网站都被下架，停止服务了，就挺有意思的。软件的破解也没下载成功。</p>
+<p>最后的最后转换思路，尝试油猴插件，以前记得尝试过，但是脚本没用了。但是尝试后发现可用。并且可以下载音频。</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/bd2e709365eaf38541a7f6e0feed32d5.jpeg" alt="image.png"></p>
+<p>但是，当时我这边断网了…..</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/e06cd3a7ec38b5fdb09f82a5f0324566.jpeg" alt="image.png"></p>
+<p>大约半小时，下载好之后，终于可以用软件转换了。但是，我转换失败了，转换最后报错了：</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/658c55405e92ac15d6c0b4e959bd1f47.jpeg" alt="image.png"></p>
+<p>看这个报错的原因好像是<code>对方计算机拒绝请求</code>，可能的原因应该是开了代理，我这边网络的原因，但是我关了代理也还是一样，估计深层有我不知道的东西。</p>
+<p>崩溃边缘……</p>
+<p>最后想，既然有音频了，应该有对应的在线转换网站，so，找了好几个都不管用。</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/952d9db92afcf901fcfbff24a7b8da24.jpeg" alt="image.png"></p>
+<p>最终，只能放弃了。</p>
+<p>上床之后，入睡之前，突发奇想，能不能用<code>剪映</code>的自动识别字幕功能识别，想办法生成str字幕文件，然后在转换成txt文本。</p>
+<h4 id="自动识别字幕"><a href="#自动识别字幕" class="headerlink" title="自动识别字幕"></a>自动识别字幕</h4><p><img src="https://pic.rmb.bdstatic.com/bjh/9e0cbcc08c370fa9f06ed4bbc83f4030.jpeg@s_0,w_2000" alt="image.png"></p>
+<h4 id="找到json文件"><a href="#找到json文件" class="headerlink" title="找到json文件"></a>找到json文件</h4><p>目录和文件名已标记</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/79790d1efe48b19965c6b1bec4a90752.jpeg" alt="image.png"></p>
+<p>大概长这样，记得用文本编辑器打开，否则乱码。</p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/f12aeda1f7c1090a161aa53875b6808d.jpeg@s_0,w_2000" alt="image.png"></p>
+<h4 id="使用网站转换提取str文件"><a href="#使用网站转换提取str文件" class="headerlink" title="使用网站转换提取str文件"></a>使用网站转换提取str文件</h4><p>网址：<a target="_blank" rel="noopener" href="https://pansong291.gitee.io/web/html/tool/JianyingPro.html">https://pansong291.gitee.io/web/html/tool/JianyingPro.html</a></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/a308730fc646c0b8fca7f4f48768acf9.jpeg@s_0,w_2000" alt="image.png"></p>
+<h4 id="将str文件转成txt"><a href="#将str文件转成txt" class="headerlink" title="将str文件转成txt"></a>将str文件转成txt</h4><p>网址：<a target="_blank" rel="noopener" href="https://subtitletools.com/convert-subtitles-to-plain-text-online">https://subtitletools.com/convert-subtitles-to-plain-text-online</a></p>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/c5b62f6d754ca4376a5ba40bb6ef9402.jpeg@s_0,w_2000" alt="image.png"></p>
+<h2 id="最后成功"><a href="#最后成功" class="headerlink" title="最后成功"></a>最后成功</h2><p><img src="https://pic.rmb.bdstatic.com/bjh/4789a12546ec143b1941554e892fa015.jpeg" alt="image.png"></p>
+<p>在这个过程中，可贵的是</p>
+<blockquote>
+<p>思路的不断快速转换和坚信自己可以解决。</p>
+</blockquote>
+<p>不足的是</p>
+<blockquote>
+<p>刚开始我对于需求没有简化，视频中音频的文本实际上等于音频的文本，只要刚开始想办法找到视频的音频，可能会顺利很多。</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%83%85%E6%A6%82%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">前情概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E5%B0%8F%E8%AE%B0"><span class="toc-number">2.</span> <span class="toc-text">过程小记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E5%AD%97%E5%B9%95"><span class="toc-number">2.0.1.</span> <span class="toc-text">自动识别字幕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%BE%E5%88%B0json%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.2.</span> <span class="toc-text">找到json文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%BD%91%E7%AB%99%E8%BD%AC%E6%8D%A2%E6%8F%90%E5%8F%96str%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.3.</span> <span class="toc-text">使用网站转换提取str文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86str%E6%96%87%E4%BB%B6%E8%BD%AC%E6%88%90txt"><span class="toc-number">2.0.4.</span> <span class="toc-text">将str文件转成txt</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E6%88%90%E5%8A%9F"><span class="toc-number">3.</span> <span class="toc-text">最后成功</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&text=小记-提取视频中音频的文本"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&is_video=false&description=小记-提取视频中音频的文本"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=小记-提取视频中音频的文本&body=Check out this article: https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&title=小记-提取视频中音频的文本"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&name=小记-提取视频中音频的文本&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/04/01/%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E6%96%87%E6%9C%AC/&t=小记-提取视频中音频的文本"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
