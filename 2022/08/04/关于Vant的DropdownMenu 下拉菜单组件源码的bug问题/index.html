@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="发现BUG在开发《湾大闲置品小铺》的搜索结果页面过程中的下拉菜单组件，发现了bug。详细描述下拉菜单一点击，打开之后，再点击一次会关闭。但是关闭的时候 style&#x3D;&quot;z-index: 10;top: 93.97522354125977px;&quot;这个样式不会随着关闭而消失。    解决办法    经排查：vant组件库相关的DropdownMenu 下拉菜单组件源码出现了问题，o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Vant的DropdownMenu 下拉菜单组件源码的bug问题">
+<meta property="og:url" content="https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="发现BUG在开发《湾大闲置品小铺》的搜索结果页面过程中的下拉菜单组件，发现了bug。详细描述下拉菜单一点击，打开之后，再点击一次会关闭。但是关闭的时候 style&#x3D;&quot;z-index: 10;top: 93.97522354125977px;&quot;这个样式不会随着关闭而消失。    解决办法    经排查：vant组件库相关的DropdownMenu 下拉菜单组件源码出现了问题，o">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/ca1e6e6b2207622eaebf88fe2ac53c7d.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/3f36c677d5dda0c149241a81ee380455.jpeg">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/ff25137b0bdc1d9da82499c6b521e4c7.jpeg">
+<meta property="article:published_time" content="2022-08-04T14:54:34.000Z">
+<meta property="article:modified_time" content="2022-08-04T14:56:13.975Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="湾大闲置品小铺">
+<meta property="article:tag" content="vant">
+<meta property="article:tag" content="解决bug">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/ca1e6e6b2207622eaebf88fe2ac53c7d.jpeg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>关于Vant的DropdownMenu 下拉菜单组件源码的bug问题</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/07/20/Auto.js-UI%E6%A0%87%E7%AD%BE%E9%AB%98%E5%BA%A6%E4%B8%BA%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&text=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&is_video=false&description=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题&body=Check out this article: https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&name=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&t=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0BUG"><span class="toc-number">1.</span> <span class="toc-text">发现BUG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%84%9F%E6%83%B3"><span class="toc-number">4.</span> <span class="toc-text">感想</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        关于Vant的DropdownMenu 下拉菜单组件源码的bug问题
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-04T14:54:34.000Z" itemprop="datePublished">2022-08-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/vant/" rel="tag">vant</a>, <a class="tag-link-link" href="/tags/%E6%B9%BE%E5%A4%A7%E9%97%B2%E7%BD%AE%E5%93%81%E5%B0%8F%E9%93%BA/" rel="tag">湾大闲置品小铺</a>, <a class="tag-link-link" href="/tags/%E8%A7%A3%E5%86%B3bug/" rel="tag">解决bug</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ul>
+<li><h2 id="发现BUG"><a href="#发现BUG" class="headerlink" title="发现BUG"></a>发现BUG</h2><p>在开发《湾大闲置品小铺》的搜索结果页面过程中的下拉菜单组件，发现了bug。<br><img src="https://pic.rmb.bdstatic.com/bjh/ca1e6e6b2207622eaebf88fe2ac53c7d.jpeg" alt="image.png"><br><strong>详细描述</strong><br>下拉菜单一点击，打开之后，再点击一次会关闭。但是关闭的时候 <code>style=&quot;z-index: 10;top: 93.97522354125977px;&quot;</code>这个样式不会随着关闭而消失。<br><img src="https://pic.rmb.bdstatic.com/bjh/3f36c677d5dda0c149241a81ee380455.jpeg" alt="image.png">  </p>
+</li>
+<li><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ul>
+<li><img src="https://pic.rmb.bdstatic.com/bjh/ff25137b0bdc1d9da82499c6b521e4c7.jpeg" alt="image.png">  </li>
+<li>经排查：vant组件库相关的DropdownMenu 下拉菜单组件源码出现了问题，onClose方法中少了如上图所示的代码。</li>
+</ul>
+</li>
+<li><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
+<li>这个bug的出现，到解决我一共花了大概今天一天的时间。  </li>
+<li>刚开始我以为源码没有问题，我觉得是我的问题，是不是哪里写错了。然后一直再尝试修改自己这边的东西，最后发现不是自己的问题。  </li>
+<li>在这过程中，找了很久，依然没有解决掉，开始烦躁，开始怀疑自己，开始各种乱想，反正就是不想写代码了，真的烦。  </li>
+<li>然后转移注意力，但是脑子里还是再想为什么这样。再回来排查，深入之后发现应该是vant那边的问题，然后各种找，也找了很长时间，也没搞定。  </li>
+<li>这个时候准备放弃了，想要去找别的解决方案了，去找了一些UI库，都没有这种下拉菜单。最后咬牙再回来继续研究，就是感觉快要找到这个bug的出处了，其实我也很想弄清楚为什么会这样。  </li>
+<li>再深入我发现应该是onClose方法和标签上控制显示和消失的属性有关，然后去看源码。源码其实我是看不懂的，但是也不是一点都看不懂。  </li>
+<li>尝试修改了标签上控制显示和消失的属性的部分，我以为应该是这里了，没想到也不是。  </li>
+<li>最后在onClose方法下面添加了如上图的代码后，就成功了。</li>
+</ul>
+</li>
+<li><h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><ul>
+<li>遇到问题，不逃避不放弃，虽然过程中你会怀疑自己，想要放弃，这都很正常。但是，一定要告诉自己再坚持一下，再想想办法，一定要把这个问题解决掉。  </li>
+<li>其实开发过程中会遇到很多很多的bug，每一次都是这样过来的。有的花的时间长，有的花的时间短。  </li>
+<li>遇到问题，遇到不懂东西，一定不要逃避，不要害怕。要去学习，去掌握，这是最好进步的时候。同时做好记录。</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0BUG"><span class="toc-number">1.</span> <span class="toc-text">发现BUG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%84%9F%E6%83%B3"><span class="toc-number">4.</span> <span class="toc-text">感想</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&text=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&is_video=false&description=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题&body=Check out this article: https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&title=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&name=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/&t=关于Vant的DropdownMenu 下拉菜单组件源码的bug问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

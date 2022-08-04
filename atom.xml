@@ -6,7 +6,7 @@
   <link href="https://qinronghai.github.io/atom.xml" rel="self"/>
   
   <link href="https://qinronghai.github.io/"/>
-  <updated>2022-07-19T16:16:22.026Z</updated>
+  <updated>2022-08-04T14:56:13.975Z</updated>
   <id>https://qinronghai.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于Vant的DropdownMenu 下拉菜单组件源码的bug问题</title>
+    <link href="https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/"/>
+    <id>https://qinronghai.github.io/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/</id>
+    <published>2022-08-04T14:54:34.000Z</published>
+    <updated>2022-08-04T14:56:13.975Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;发现BUG&quot;&gt;&lt;a href=&quot;#发现BUG&quot; class=&quot;headerlink&quot; title=&quot;发现BUG&quot;&gt;&lt;/a&gt;发现BUG&lt;/h2&gt;&lt;p&gt;在开发《湾大闲置品小铺》的搜索结果页面过程中的下拉菜单组件，发现了bug。&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="湾大闲置品小铺" scheme="https://qinronghai.github.io/tags/%E6%B9%BE%E5%A4%A7%E9%97%B2%E7%BD%AE%E5%93%81%E5%B0%8F%E9%93%BA/"/>
+    
+    <category term="vant" scheme="https://qinronghai.github.io/tags/vant/"/>
+    
+    <category term="解决bug" scheme="https://qinronghai.github.io/tags/%E8%A7%A3%E5%86%B3bug/"/>
+    
+  </entry>
   
   <entry>
     <title>Auto.js-UI标签高度为*的问题</title>
