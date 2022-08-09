@@ -6,7 +6,7 @@
   <link href="https://qinronghai.github.io/atom.xml" rel="self"/>
   
   <link href="https://qinronghai.github.io/"/>
-  <updated>2022-08-04T14:56:13.975Z</updated>
+  <updated>2022-08-09T09:16:15.897Z</updated>
   <id>https://qinronghai.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初次使用python与pandas实践对excel的自动化办公</title>
+    <link href="https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/"/>
+    <id>https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/</id>
+    <published>2022-08-09T09:13:40.000Z</published>
+    <updated>2022-08-09T09:16:15.897Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;  有一位朋友在实习的过程中，需要对excel表格进行大量的操纵，一张表格大约3w行，数据量很大。需求如下所现。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="python" scheme="https://qinronghai.github.io/tags/python/"/>
+    
+    <category term="小项目" scheme="https://qinronghai.github.io/tags/%E5%B0%8F%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="pandas" scheme="https://qinronghai.github.io/tags/pandas/"/>
+    
+    <category term="excel" scheme="https://qinronghai.github.io/tags/excel/"/>
+    
+  </entry>
   
   <entry>
     <title>关于Vant的DropdownMenu 下拉菜单组件源码的bug问题</title>

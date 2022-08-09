@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="介绍  有一位朋友在实习的过程中，需要对excel表格进行大量的操纵，一张表格大约3w行，数据量很大。需求如下所现。 实现原理左连接 返回左表的所有记录和右表中连接字段相等的记 在本程序中：  以最新日期的表格作为底表（左表，8.06） 需要从另一张表（右表，7.31）中拿出分配余额列的数据 与底表进行账号匹配（即账号为连接字段） 将（右表，7.31）的分配余额列的数据插入底表的分配余额列的后一列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初次使用python与pandas实践对excel的自动化办公">
+<meta property="og:url" content="https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="介绍  有一位朋友在实习的过程中，需要对excel表格进行大量的操纵，一张表格大约3w行，数据量很大。需求如下所现。 实现原理左连接 返回左表的所有记录和右表中连接字段相等的记 在本程序中：  以最新日期的表格作为底表（左表，8.06） 需要从另一张表（右表，7.31）中拿出分配余额列的数据 与底表进行账号匹配（即账号为连接字段） 将（右表，7.31）的分配余额列的数据插入底表的分配余额列的后一列">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/f9f523bbac9060ed45aef32ae6a85f75.jpeg">
+<meta property="article:published_time" content="2022-08-09T09:13:40.000Z">
+<meta property="article:modified_time" content="2022-08-09T09:16:15.897Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="小项目">
+<meta property="article:tag" content="pandas">
+<meta property="article:tag" content="excel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/f9f523bbac9060ed45aef32ae6a85f75.jpeg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>初次使用python与pandas实践对excel的自动化办公</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/08/04/%E5%85%B3%E4%BA%8EVant%E7%9A%84DropdownMenu%20%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E7%9A%84bug%E9%97%AE%E9%A2%98/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&text=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&is_video=false&description=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=初次使用python与pandas实践对excel的自动化办公&body=Check out this article: https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&name=初次使用python与pandas实践对excel的自动化办公&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&t=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.1.</span> <span class="toc-text">左连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">要求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A6%81%E6%B1%82"><span class="toc-number">4.2.</span> <span class="toc-text">其他要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%93%E6%9E%9C"><span class="toc-number">5.</span> <span class="toc-text">实现结果</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        初次使用python与pandas实践对excel的自动化办公
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-09T09:13:40.000Z" itemprop="datePublished">2022-08-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/excel/" rel="tag">excel</a>, <a class="tag-link-link" href="/tags/pandas/" rel="tag">pandas</a>, <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>, <a class="tag-link-link" href="/tags/%E5%B0%8F%E9%A1%B9%E7%9B%AE/" rel="tag">小项目</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>  有一位朋友在实习的过程中，需要对excel表格进行大量的操纵，一张表格大约3w行，数据量很大。需求如下所现。</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><h3 id="左连接"><a href="#左连接" class="headerlink" title="左连接"></a>左连接</h3><p> 返回左表的所有记录和右表中连接字段相等的记<br> 在本程序中：</p>
+<ul>
+<li>以最新日期的表格作为<strong>底表</strong>（左表，8.06）</li>
+<li>需要从另一张表（右表，7.31）中拿出<code>分配余额</code>列的数据</li>
+<li>与<strong>底表</strong>进行账号匹配（即<code>账号</code>为连接字段）</li>
+<li>将（右表，7.31）的<code>分配余额</code>列的数据插入<strong>底表</strong>的<code>分配余额</code>列的后一列</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最新的作为底表</span></span><br><span class="line"><span class="comment"># 指定从第五行开始为表头，即从第五行开始读取数据</span></span><br><span class="line">table = pd.read_excel(<span class="string">&#x27;D:/表格/1402812_个人存款账户明细8.06.xlsx&#x27;</span>, header=<span class="number">4</span>)</span><br><span class="line"><span class="comment"># 另一张表</span></span><br><span class="line">table2 = pd.read_excel(<span class="string">&#x27;D:/表格/1402812_个人存款账户明细7.31.xlsx&#x27;</span>, header=<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将另一张表的 “7.31分配余额”这一列的数据插入到底表中</span></span><br><span class="line"><span class="built_in">sum</span> = pd.merge(</span><br><span class="line">    table, table2[[<span class="string">&#x27;账号&#x27;</span>, <span class="string">&#x27;7.31分配余额&#x27;</span>]], how=<span class="string">&#x27;left&#x27;</span>, on=<span class="string">&#x27;账号&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 先把需要调整的列的数据拿出来</span></span><br><span class="line">other_price = <span class="built_in">sum</span>[<span class="string">&#x27;7.31分配余额&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除合并后的&#x27;7.31分配余额&#x27;这一列</span></span><br><span class="line"><span class="built_in">sum</span>.drop(<span class="string">&#x27;7.31分配余额&#x27;</span>, axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用插入的方式把这个列调整到对应的位置上</span></span><br><span class="line"><span class="built_in">sum</span>.insert(<span class="number">23</span>, <span class="string">&#x27;7.31分配余额&#x27;</span>, other_price)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line"><span class="built_in">sum</span>.to_excel(<span class="string">&#x27;D:/表格/output.xlsx&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;ok!&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><ul>
+<li>Python 3.9.6</li>
+<li>pandas库（pip 安装）</li>
+</ul>
+<h3 id="其他要求"><a href="#其他要求" class="headerlink" title="其他要求"></a>其他要求</h3><ul>
+<li>将所有表格放入<code>D:\表格</code>目录下</li>
+</ul>
+<p>因本人目前未深入学习python和pandas，以及时间的局限性，所以未能完善此程序，有很大一部分是写死的，只能满足本次朋友的特定情况的需求。</p>
+<h2 id="实现结果"><a href="#实现结果" class="headerlink" title="实现结果"></a>实现结果</h2><p><img src="https://pic.rmb.bdstatic.com/bjh/f9f523bbac9060ed45aef32ae6a85f75.jpeg" alt="image.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.1.</span> <span class="toc-text">左连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">要求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A6%81%E6%B1%82"><span class="toc-number">4.2.</span> <span class="toc-text">其他要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%93%E6%9E%9C"><span class="toc-number">5.</span> <span class="toc-text">实现结果</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&text=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&is_video=false&description=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=初次使用python与pandas实践对excel的自动化办公&body=Check out this article: https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&title=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&name=初次使用python与pandas实践对excel的自动化办公&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8python%E4%B8%8Epandas%E5%AE%9E%E8%B7%B5%E5%AF%B9excel%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/&t=初次使用python与pandas实践对excel的自动化办公"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
