@@ -6,7 +6,7 @@
   <link href="https://qinronghai.github.io/atom.xml" rel="self"/>
   
   <link href="https://qinronghai.github.io/"/>
-  <updated>2022-08-14T08:30:28.434Z</updated>
+  <updated>2022-08-15T06:22:43.507Z</updated>
   <id>https://qinronghai.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>uni-app渲染Markdown之Towxml</title>
+    <link href="https://qinronghai.github.io/2022/08/15/uni-app%E6%B8%B2%E6%9F%93Markdown%E4%B9%8BTowxml/"/>
+    <id>https://qinronghai.github.io/2022/08/15/uni-app%E6%B8%B2%E6%9F%93Markdown%E4%B9%8BTowxml/</id>
+    <published>2022-08-15T05:57:01.000Z</published>
+    <updated>2022-08-15T06:22:43.507Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h2&gt;&lt;p&gt;在开发过程中，对于在小程序中显示Markdown有需求。了解之后，发现可以使用github上的Towxml库实现：&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="uni-app" scheme="https://qinronghai.github.io/tags/uni-app/"/>
+    
+    <category term="Markdown" scheme="https://qinronghai.github.io/tags/Markdown/"/>
+    
+    <category term="Towxml" scheme="https://qinronghai.github.io/tags/Towxml/"/>
+    
+  </entry>
   
   <entry>
     <title>小程序button按钮消除默认边框</title>
