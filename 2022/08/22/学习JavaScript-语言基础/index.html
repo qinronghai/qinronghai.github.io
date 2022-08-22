@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="学习JavaScript-语言基础语法区分大小写标识符所谓标识符，就是变量、函数、属性或函数参数的名称。标识符可以由一或多个下列字符组成：  第一个字符必须是一个字母、下划线（_）或美元符号（$）； 剩下的其他字符可以是字母、下划线、美元符号或数字。 关键字与保留字不能用作标识符。  按照惯例，标识符使用小驼峰式命名法（lower camel case），这种形式跟 ECMAScript 内置函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript-语言基础">
+<meta property="og:url" content="https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="学习JavaScript-语言基础语法区分大小写标识符所谓标识符，就是变量、函数、属性或函数参数的名称。标识符可以由一或多个下列字符组成：  第一个字符必须是一个字母、下划线（_）或美元符号（$）； 剩下的其他字符可以是字母、下划线、美元符号或数字。 关键字与保留字不能用作标识符。  按照惯例，标识符使用小驼峰式命名法（lower camel case），这种形式跟 ECMAScript 内置函数">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://files.catbox.moe/zt8gyc.png">
+<meta property="article:published_time" content="2022-08-22T14:23:59.000Z">
+<meta property="article:modified_time" content="2022-08-22T14:50:17.119Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://files.catbox.moe/zt8gyc.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>学习JavaScript-语言基础</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-HTML%E4%B8%AD%E7%9A%84JavaScript.md/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&text=学习JavaScript-语言基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&is_video=false&description=学习JavaScript-语言基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-语言基础&body=Check out this article: https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&name=学习JavaScript-语言基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&t=学习JavaScript-语言基础"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">学习JavaScript-语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.3.</span> <span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">单行注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%97%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">块注释</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">严格模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">使用严格模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.5.</span> <span class="toc-text">语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.6.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#var"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">var</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#var-%E5%A3%B0%E6%98%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.1.6.1.1.</span> <span class="toc-text">var 声明作用域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#var-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87"><span class="toc-number">1.1.6.1.2.</span> <span class="toc-text">var 变量提升</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#let%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">let声明</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA"><span class="toc-number">1.1.6.2.1.</span> <span class="toc-text">暂时性死区</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.2.2.</span> <span class="toc-text">全局声明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#for-%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84-let-%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.2.3.</span> <span class="toc-text">for 循环中的 let 声明</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#const%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">const声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.7.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.7.1.</span> <span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.7.2.</span> <span class="toc-text">复杂数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#typeof%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.7.3.</span> <span class="toc-text">typeof操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.</span> <span class="toc-text">操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.1.</span> <span class="toc-text">一元操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E7%AD%89%E5%92%8C%E4%B8%8D%E5%85%A8%E7%AD%89"><span class="toc-number">1.1.8.2.</span> <span class="toc-text">全等和不全等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.3.</span> <span class="toc-text">位操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%97%E5%8F%B7%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.4.</span> <span class="toc-text">逗号操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5-1"><span class="toc-number">1.1.9.</span> <span class="toc-text">语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.10.</span> <span class="toc-text">函数</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        学习JavaScript-语言基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-22T14:23:59.000Z" itemprop="datePublished">2022-08-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="学习JavaScript-语言基础"><a href="#学习JavaScript-语言基础" class="headerlink" title="学习JavaScript-语言基础"></a>学习JavaScript-语言基础</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="区分大小写"><a href="#区分大小写" class="headerlink" title="区分大小写"></a>区分大小写</h3><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>所谓<strong>标识符</strong>，就是变量、函数、属性或函数参数的名称。标识符可以由一或多个下列字符组成：</p>
+<ol>
+<li>第一个字符必须是一个字母、下划线（_）或美元符号（$）；</li>
+<li>剩下的其他字符可以是字母、下划线、美元符号或数字。</li>
+<li>关键字与保留字不能用作标识符。</li>
+</ol>
+<p>按照惯例，标识符使用<u>小驼峰式命名法</u>（lower camel case），这种形式跟 ECMAScript 内置函数和对象的命名方式一致，所以算是最佳实践。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><h4 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单行注释</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="块注释"><a href="#块注释" class="headerlink" title="块注释"></a>块注释</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 这是多行</span></span><br><span class="line"><span class="comment">注释 */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h3><p>严格模式是从 ES5 进入标准的，主要目的有以下几个。</p>
+<ul>
+<li>明确禁止一些不合理、不严谨的语法，减少 JavaScript 语言的一些怪异行为。</li>
+<li>增加更多报错的场合，消除代码运行的一些不安全之处，保证代码运行的安全。</li>
+<li>提高编译器效率，增加运行速度。</li>
+<li>为未来新版本的 JavaScript 语法做好铺垫。</li>
+</ul>
+<p>总之，严格模式体现了 JavaScript 更合理、更安全、更严谨的发展方向。</p>
+<h4 id="使用严格模式"><a href="#使用严格模式" class="headerlink" title="使用严格模式"></a>使用严格模式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在脚本的开头加上这一行</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以单独指定一个函数在严格模式下执行</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doSomething</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="string">&quot;use strict&quot;</span>;</span><br><span class="line">  <span class="comment">// 函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><ul>
+<li>语句结尾加分号</li>
+<li>多条语句加花括号</li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>有 3 个关键字可以声明变量：<code>var</code>、<code>const</code> 和 <code>let</code>。其中，var 在ECMAScript 的所有版本中都可以使用，而 const 和 let 只能在 ECMAScript 6 及更晚的版本中使用。</p>
+<h4 id="var"><a href="#var" class="headerlink" title="var"></a>var</h4><p>可以用它保存任何类型的值。（不初始化的情况下，变量会保存一个特殊值 undefined)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不初始化</span></span><br><span class="line"><span class="keyword">var</span> message; <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化 这样初始化变量不会将它标识为字符串类型，只是一个简单的赋值而已</span></span><br><span class="line"><span class="keyword">var</span> message = <span class="string">&quot;hi&quot;</span>; </span><br><span class="line"></span><br><span class="line">message=<span class="number">100</span>; <span class="comment">// 随后，不仅可以改变保存的值，也可以改变值的类型,这合法，但不推荐</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="var-声明作用域"><a href="#var-声明作用域" class="headerlink" title="var 声明作用域"></a>var 声明作用域</h5><p>使用 var在一个函数内部定义一个变量，就意味着该变量将在函数退出时被销毁</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> message = <span class="string">&quot;hi&quot;</span>; <span class="comment">// 局部变量</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(message); <span class="comment">// 出错！</span></span><br></pre></td></tr></table></figure>
+
+<p>在函数内定义变量时省略 var 操作符，可以创建一个全局变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line"> message = <span class="string">&quot;hi&quot;</span>; <span class="comment">// 全局变量</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(message); <span class="comment">// &quot;hi&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="var-变量提升"><a href="#var-变量提升" class="headerlink" title="var 变量提升"></a>var 变量提升</h5><p>使用<code>var</code>这个关键字声明的变量会自动提升到函数作用域顶部</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是没错的，因为其实是下面那样的</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(age);</span><br><span class="line"> <span class="keyword">var</span> age = <span class="number">26</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>(); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> age; <span class="comment">//*</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(age);</span><br><span class="line">  age = <span class="number">26</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>此外，反复多次使用 var 声明同一个变量也没有问题：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">16</span>;</span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">26</span>;</span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">36</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(age);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>(); <span class="comment">// 36</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="let声明"><a href="#let声明" class="headerlink" title="let声明"></a>let声明</h4><p>let 声明的范围是<strong>块作用域</strong>，而 var 声明的范围是函数作用域。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;Matt&#x27;</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// Matt</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// Matt</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// let</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> age = <span class="number">26</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(age); <span class="comment">// 26</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(age); <span class="comment">// ReferenceError: age 没有定义</span></span><br></pre></td></tr></table></figure>
+
+<p>let不允许同一个块作用域中多次声明，会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age;</span><br><span class="line"><span class="keyword">let</span> age; <span class="comment">// SyntaxError；标识符 age 已经声明过了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样也不行</span></span><br><span class="line"><span class="keyword">var</span> name;</span><br><span class="line"><span class="keyword">let</span> name; <span class="comment">// SyntaxError</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h5><p>就是 let 声明的变量不会在作用域中被提升</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// name 会被提升</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;Matt&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// age 不会被提升</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(age); <span class="comment">// ReferenceError：age 没有定义</span></span><br><span class="line"><span class="keyword">let</span> age = <span class="number">26</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="全局声明"><a href="#全局声明" class="headerlink" title="全局声明"></a>全局声明</h5><p>与 var 关键字不同，使用 let 在全局作用域中声明的变量不会成为 window 对象的属性（var 声明的变量则会）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;Matt&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">name</span>); <span class="comment">// &#x27;Matt&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> age = <span class="number">26</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">age</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>let 声明仍然是在全局作用域中发生的，相应变量会在页面的生命周期内存续。因此，为了<br>避免 SyntaxError，必须确保页面不会重复声明同一个变量。</p>
+<h5 id="for-循环中的-let-声明"><a href="#for-循环中的-let-声明" class="headerlink" title="for 循环中的 let 声明"></a>for 循环中的 let 声明</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i) &#123;</span><br><span class="line"> <span class="comment">// 循环逻辑</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// ReferenceError: i 没有定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用var，for 循环定义的迭代变量会渗透到循环体外部</span></span><br></pre></td></tr></table></figure>
+
+<p>特别注意：在使用 var 的时候，最常见的问题就是对迭代变量的奇特声明和修改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i) &#123;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(i), <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 你可能以为会输出 0、1、2、3、4</span></span><br><span class="line"><span class="comment">// 实际上会输出 5、5、5、5、5</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000040163287">此怪象解释参考</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">理解闭包</a></p>
+<h4 id="const声明"><a href="#const声明" class="headerlink" title="const声明"></a>const声明</h4><p>与let基本相同：</p>
+<ul>
+<li>不允许重复声明</li>
+<li>声明作用域也是块</li>
+</ul>
+<p>重要的区别是：</p>
+<ol>
+<li><p>声明变量时必须同时初始化变量，并且尝试修改赋值时会报错。</p>
+</li>
+<li><p>不能用const来声明迭代变量，但只想用 const 声明一个不会被修改的 for 循环变量，那也是可以的</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> j = <span class="number">7</span>; i &lt; <span class="number">5</span>; ++i) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 7, 7, 7, 7, 7</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>&#125;) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a, b</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> value <span class="keyword">of</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1, 2, 3, 4, 5</span></span><br></pre></td></tr></table></figure>
+
+<p> const 声明的限制只适用于它指向的变量的引用。换句话说，如果 const 变量引用的是一个对象，那么修改这个对象内部的属性并不违反 const 的限制。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;&#125;;</span><br><span class="line">person.<span class="property">name</span> = <span class="string">&#x27;Matt&#x27;</span>; <span class="comment">// ok</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h4><ul>
+<li><p>Undefined</p>
+<ul>
+<li>当使用 var 或 let 声明了变量但没有初始化时，就相当于给变量赋予了 undefined 值。</li>
+<li>undefined 是一个假值。用于if的判断为假。</li>
+</ul>
+</li>
+<li><p>Null</p>
+<ul>
+<li>null 值表示一个空对象指针，这也是给typeof 传一个 null 会返回”object”的原因</li>
+<li>在定义将来要保存对象值的变量时，建议使用 null 来初始化，不要使用其他值。只要变量要保存对象，而当时又没有那个对象可保存，就要用 null 来填充该变量。这样就可以保持 null 是空对象指针的语义，并进一步将其与 undefined 区分开来。</li>
+<li>undefined 值是由 null 值派生而来的，<code>console.log(null == undefined); // true</code></li>
+<li>null 是一个假值。</li>
+</ul>
+</li>
+<li><p>Boolean</p>
+<ul>
+<li><p><code>true</code>和<code>false</code></p>
+</li>
+<li><p>两个布尔值不同于数值，因此 true 不等于 1，false 不等于 0</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> === <span class="number">1</span>); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">false</span> === <span class="number">0</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Boolean()转型函数可以在任意类型的数据上调用转化为布尔值</p>
+<p><img src="https://files.catbox.moe/zt8gyc.png"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Boolean</span>(<span class="string">&quot;hi&quot;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Boolean</span>(<span class="literal">true</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Boolean</span>(<span class="number">3</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Boolean</span>([])); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Boolean</span>(<span class="literal">null</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Boolean</span>(<span class="literal">undefined</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>if 等流控制语句会自动执行其他类型值到布尔值的转换</p>
+</li>
+</ul>
+</li>
+<li><p>Number</p>
+<ul>
+<li><p>有整数和浮点值，同时十进制，八进制（0开头接相应的八进制数字，若数字超出八进制范围，按十进制算），十六进制（0x开头节十六进制数字）。</p>
+</li>
+<li><p>因为存储浮点值使用的内存空间是存储整数值的两倍，所以 ECMAScript 总是想方设法把值转换为整数。在小数点后面没有数字的情况下，数值就会变成整数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> floatNum3 = <span class="number">.1</span>; <span class="comment">// 有效，但不推荐</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>浮点值的精确度最高可达 17 位小数，但在算术计算中远不如整数精确。例如，0.1 加 0.2 得到的不是 0.3，而是 0.300 000 000 000 000 04。由于这种微小的舍入错误，导致很难测试特定的浮点值。比如下面的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a + b == <span class="number">0.3</span>) &#123; <span class="comment">// 别这么干！</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;You got 0.3.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果某个计算得到的数值结果超出了 JavaScript 可以表示的范围，那么这个数值会被自动转换为一个特殊的 Infinity（无穷）值。任何无法表示的负数以-Infinity（负无穷大）表示，任何无法表示的正数以 Infinity（正无穷大）表示。</p>
+</li>
+<li><p>isFinite()函数来确定一个值是不是有限大（即介于 JavaScript 能表示的<br> 最小值和最大值之间）。</p>
+</li>
+<li><p><strong>特殊的数值叫 NaN</strong>，意思是“不是数值”（Not a Number），用于表示本来要返回数值的操作失败了（而不是抛出错误）。比如，用 0 除任意数值在其他语言中通常都会导致错误，从而中止代码执行。但在 ECMAScript 中，0、+0 或-0 相除会返回 NaN：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span>/<span class="number">0</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">0</span>/+<span class="number">0</span>); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>如果分子是非 0 值，分母是有符号 0 或无符号 0，则会返回 Infinity 或-Infinity：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>/<span class="number">0</span>); <span class="comment">// Infinity</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>/-<span class="number">0</span>); <span class="comment">// -Infinity</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 任何涉及 NaN 的操作始终返回 NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">NaN</span> / <span class="number">0</span>);  <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// NaN 不等于包括 NaN 在内的任何值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">NaN</span> == <span class="title class_">NaN</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>isNaN()函数</strong>:该函数接收一个参数，可以是任意数据类型，然后判断这个参数是否“不是数值”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(<span class="title class_">NaN</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(<span class="number">10</span>)); <span class="comment">// false，10 是数值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(<span class="string">&quot;10&quot;</span>)); <span class="comment">// false，可以转换为数值 10</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(<span class="string">&quot;blue&quot;</span>)); <span class="comment">// true，不可以转换为数值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(<span class="literal">true</span>)); <span class="comment">// false，可以转换为数值 1</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>数值转换</strong></p>
+<ul>
+<li>Number()用于任何数据类型转成数字</li>
+<li>parseInt()</li>
+<li>parseFloat()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>String</p>
+<ul>
+<li><p>字符串可以用‘’,“”,&#96;&#96;来标示。</p>
+</li>
+<li><p>字符串时不可变的，一旦创建，值就不变，</p>
+</li>
+<li><p>要修改某个变量中的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lang = <span class="string">&quot;Java&quot;</span>;</span><br><span class="line">lang = lang + <span class="string">&quot;Script&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 这里，变量 lang 一开始包含字符串&quot;Java&quot;。紧接着，lang 被重新定义为包含&quot;Java&quot;和&quot;Script&quot;</span></span><br><span class="line"><span class="comment">的组合，也就是&quot;JavaScript&quot;。整个过程首先会分配一个足够容纳 10 个字符的空间，然后填充上</span></span><br><span class="line"><span class="comment">&quot;Java&quot;和&quot;Script&quot;。最后销毁原始的字符串&quot;Java&quot;和字符串&quot;Script&quot;，因为这两个字符串都没有用</span></span><br><span class="line"><span class="comment">了。所有处理都是在后台发生的，而这也是一些早期的浏览器（如 Firefox 1.0 之前的版本和 IE6.0）在</span></span><br><span class="line"><span class="comment">拼接字符串时非常慢的原因。这些浏览器在后来的版本中都有针对性地解决了这个问题。 */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转换为字符串</p>
+</li>
+<li><p>oString()方法：返回当前值的字符串等价物。null 和 undefined 值没有 toString()方法。</p>
+</li>
+<li><p>模板字面量</p>
+</li>
+<li><p>字符串插值：<code>$&#123;&#125;</code></p>
+</li>
+</ul>
+</li>
+<li><p>Symbol（符号）</p>
+<p><a target="_blank" rel="noopener" href="https://zh.javascript.info/symbol">https://zh.javascript.info/symbol</a></p>
+</li>
+</ul>
+<h4 id="复杂数据类型"><a href="#复杂数据类型" class="headerlink" title="复杂数据类型"></a>复杂数据类型</h4><ul>
+<li>Object</li>
+</ul>
+<h4 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h4><p>用来确定变量的数据类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> message = <span class="string">&quot;some string&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> message); <span class="comment">// &quot;string&quot;   直接传变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">typeof</span>(message)); <span class="comment">// &quot;string&quot;  可以传参数</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="number">95</span>); <span class="comment">// &quot;number&quot;     也可以传字面量</span></span><br></pre></td></tr></table></figure>
+
+<p>typeof 是一个操作符而不是函数，所以不需要参数（但可以使用参数）。</p>
+<p>注意：typeof null 返回的是”object”。这是因为特殊值 null 被认为是一个对空对象的引用。</p>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><h4 id="一元操作符"><a href="#一元操作符" class="headerlink" title="一元操作符"></a>一元操作符</h4><ol>
+<li><p>递增递减 ++&#x2F;–</p>
+</li>
+<li><p>加和减</p>
+</li>
+</ol>
+<p> 将一元加应用到非数值，则会执行与使用 Number()转型函数一样的类型转换</p>
+<p> 一元减会遵循与一元加同样的规则，先对它们进行转换，然后再取负值</p>
+<h4 id="全等和不全等"><a href="#全等和不全等" class="headerlink" title="全等和不全等"></a>全等和不全等</h4><ol>
+<li><code>==</code>会先强制类型转换，然后再进行比较是否相等。</li>
+</ol>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">false</span> == <span class="number">0</span>); <span class="comment">// true  布尔值会转换成数字</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;23&quot;</span> == <span class="number">23</span>); <span class="comment">// true  字符串和数字会转成数字</span></span><br><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;hai&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(user == <span class="string">&quot;2&quot;</span>); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">null</span> == <span class="literal">undefined</span>); <span class="comment">// true  if判别的时候要小心</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">NaN</span> == <span class="literal">undefined</span>); <span class="comment">//false  有NaN则false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">NaN</span> == <span class="title class_">NaN</span>); <span class="comment">// false  按照规则，NaN 不等于 NaN。</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>===</code>不会强制类型转换，是直接比较的</li>
+</ol>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span> <span class="comment">// 数据类型不同</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result1 = (<span class="string">&quot;55&quot;</span> != <span class="number">55</span>); <span class="comment">// false，转换后相等</span></span><br><span class="line"><span class="keyword">let</span> result2 = (<span class="string">&quot;55&quot;</span> !== <span class="number">55</span>); <span class="comment">// true，不相等，因为数据类型不同</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="位操作符"><a href="#位操作符" class="headerlink" title="位操作符"></a>位操作符</h4><ol>
+<li><p>按位非</p>
+<p> 按位非操作符用波浪符（~）表示，它的作用是返回数值的一补数。按位非是 ECMAScript 中为数不多的几个二进制数学操作符之一。看下面的例子：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num1 = <span class="number">25</span>; <span class="comment">// 二进制 00000000000000000000000000011001</span></span><br><span class="line"><span class="keyword">let</span> num2 = ~num1; <span class="comment">// 二进制 11111111111111111111111111100110</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num2); <span class="comment">// -26</span></span><br></pre></td></tr></table></figure>
+
+<p> 这里，按位非操作符作用到了数值 25，得到的结果是26。由此可以看出，按位非的最终效果是对数值取反并减 1，就像执行如下操作的结果一样：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num1 = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">let</span> num2 = -num1 - <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num2); <span class="comment">// &quot;-26&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p> 实际上，尽管两者返回的结果一样，但位操作的速度快得多。这是因为位操作是在数值的底层表示上完成的。</p>
+</li>
+<li><p>按位与</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="number">25</span> &amp; <span class="number">3</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p> 25 和 3 的按位与操作的结果是 1。为什么呢？看下面的二进制计算过程：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">25</span> = <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span> <span class="number">1001</span></span><br><span class="line"><span class="number">3</span>  = <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"><span class="variable constant_">AND</span>= <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span></span><br></pre></td></tr></table></figure>
+
+<p> 如上所示，25 和 3 的二进制表示中，只有第 0 位上的两个数都是 1。于是结果数值的所 有其他位都会以 0 填充，因此结果就是 1。</p>
+</li>
+<li><p>按位或（|）</p>
+<p>即按位与变成或运算</p>
+</li>
+<li><p>按位异或（^）</p>
+<p> 即异或运算</p>
+</li>
+<li><p>左移（&lt;&lt;）</p>
+</li>
+</ol>
+<ul>
+<li>左移会保留它所操作数值的符号</li>
+<li>左移右边补零</li>
+</ul>
+<h4 id="逗号操作符"><a href="#逗号操作符" class="headerlink" title="逗号操作符"></a>逗号操作符</h4><ul>
+<li>一次性声明多个变量</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num1 = <span class="number">1</span>, num2 = <span class="number">2</span>, num3 = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在赋值时使用逗号操作符分隔值，最终会返回表达式中最后一个值：</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = (<span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">0</span>); <span class="comment">// num 的值为 0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="语句-1"><a href="#语句-1" class="headerlink" title="语句"></a>语句</h3><ul>
+<li><p>if</p>
+</li>
+<li><p>do-while</p>
+</li>
+<li><p>while</p>
+</li>
+<li><p>for</p>
+</li>
+<li><p>for-in</p>
+<ul>
+<li>用于枚举<strong>对象中的非符号键属性</strong></li>
+<li>不能保证返回对象属性的顺序</li>
+<li>如果 for-in 循环要迭代的变量是 null 或 undefined，则不执行循环体</li>
+</ul>
+</li>
+<li><p>for-of</p>
+<ul>
+<li>用于遍历<strong>可迭代对象（如Array）</strong>的元素</li>
+<li>for-of 循环会按照可迭代对象的 next()方法产生值的顺序迭代元素</li>
+</ul>
+</li>
+<li><p>with语句</p>
+<ul>
+<li><p>用途是将代码作用域设置为特定的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> qs = location.<span class="property">search</span>.<span class="title function_">substring</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> hostName = location.<span class="property">hostname</span>;</span><br><span class="line"><span class="keyword">let</span> url = location.<span class="property">href</span>;</span><br><span class="line"><span class="comment">// 上面代码中的每一行都用到了 location 对象</span></span><br><span class="line"><span class="title function_">with</span>(<span class="params">location</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> qs = search.<span class="title function_">substring</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">let</span> hostName = hostname;</span><br><span class="line">  <span class="keyword">let</span> url = href;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>严格模式不允许使用 with 语句，否则会抛出错误。</p>
+</li>
+</ul>
+</li>
+<li><p>switch语句</p>
+</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">学习JavaScript-语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.3.</span> <span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">单行注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%97%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">块注释</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">严格模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">使用严格模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.5.</span> <span class="toc-text">语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.6.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#var"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">var</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#var-%E5%A3%B0%E6%98%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.1.6.1.1.</span> <span class="toc-text">var 声明作用域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#var-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87"><span class="toc-number">1.1.6.1.2.</span> <span class="toc-text">var 变量提升</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#let%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">let声明</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA"><span class="toc-number">1.1.6.2.1.</span> <span class="toc-text">暂时性死区</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.2.2.</span> <span class="toc-text">全局声明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#for-%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84-let-%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.2.3.</span> <span class="toc-text">for 循环中的 let 声明</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#const%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">const声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.7.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.7.1.</span> <span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.7.2.</span> <span class="toc-text">复杂数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#typeof%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.7.3.</span> <span class="toc-text">typeof操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.</span> <span class="toc-text">操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.1.</span> <span class="toc-text">一元操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E7%AD%89%E5%92%8C%E4%B8%8D%E5%85%A8%E7%AD%89"><span class="toc-number">1.1.8.2.</span> <span class="toc-text">全等和不全等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.3.</span> <span class="toc-text">位操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%97%E5%8F%B7%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.1.8.4.</span> <span class="toc-text">逗号操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5-1"><span class="toc-number">1.1.9.</span> <span class="toc-text">语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.10.</span> <span class="toc-text">函数</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&text=学习JavaScript-语言基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&is_video=false&description=学习JavaScript-语言基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-语言基础&body=Check out this article: https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=学习JavaScript-语言基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&name=学习JavaScript-语言基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/22/%E5%AD%A6%E4%B9%A0JavaScript-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&t=学习JavaScript-语言基础"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
