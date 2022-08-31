@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="集合引用类型Object声明对像的两种方法： 12345678let obj&#x3D;new Object();obj.name&#x3D;&amp;#x27;qin&amp;#x27;;let obj&#x3D;&amp;#123;	&quot;name&quot;:&quot;qin&quot;,	5:50 &#x2F;&#x2F;可以存在数值属性，但会自动转换成字符串&amp;#125;&#x2F;&#x2F;在使用对象字面量表示法定义对象时，并不会实际调用 Object 构造函数。  存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript-集合引用类型">
+<meta property="og:url" content="https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="集合引用类型Object声明对像的两种方法： 12345678let obj&#x3D;new Object();obj.name&#x3D;&amp;#x27;qin&amp;#x27;;let obj&#x3D;&amp;#123;	&quot;name&quot;:&quot;qin&quot;,	5:50 &#x2F;&#x2F;可以存在数值属性，但会自动转换成字符串&amp;#125;&#x2F;&#x2F;在使用对象字面量表示法定义对象时，并不会实际调用 Object 构造函数。  存">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-24T12:48:34.000Z">
+<meta property="article:modified_time" content="2022-08-24T15:19:45.397Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>学习JavaScript-集合引用类型</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/08/30/%E5%AD%A6%E4%B9%A0JavaScript-%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E5%9F%BA%E6%9C%AC%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&text=学习JavaScript-集合引用类型"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&is_video=false&description=学习JavaScript-集合引用类型"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-集合引用类型&body=Check out this article: https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&name=学习JavaScript-集合引用类型&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&t=学习JavaScript-集合引用类型"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">集合引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Object"><span class="toc-number">1.1.</span> <span class="toc-text">Object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.2.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">转换成数组的两个静态方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-from"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1. from()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-of"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2. of()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%A9%BA%E4%BD%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">数组空位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B4%A2%E5%BC%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">数组索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.5.</span> <span class="toc-text">检测数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.6.</span> <span class="toc-text">迭代器方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%92%8C%E5%A1%AB%E5%85%85%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.7.</span> <span class="toc-text">复制和填充方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.8.</span> <span class="toc-text">转换方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.9.</span> <span class="toc-text">栈方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.10.</span> <span class="toc-text">队列方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.11.</span> <span class="toc-text">排序方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.11.1.</span> <span class="toc-text">比较函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.12.</span> <span class="toc-text">操作方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%92%8C%E4%BD%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.13.</span> <span class="toc-text">搜索和位置方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.13.1.</span> <span class="toc-text">严格相等搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%AD%E8%A8%80%E5%87%BD%E6%95%B0%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.13.2.</span> <span class="toc-text">断言函数搜索</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.14.</span> <span class="toc-text">迭代方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.15.</span> <span class="toc-text">归并方法</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        学习JavaScript-集合引用类型
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-24T12:48:34.000Z" itemprop="datePublished">2022-08-24</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h1><h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p>声明对像的两种方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj=<span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">obj.<span class="property">name</span>=<span class="string">&#x27;qin&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj=&#123;</span><br><span class="line">	<span class="string">&quot;name&quot;</span>:<span class="string">&quot;qin&quot;</span>,</span><br><span class="line">	<span class="number">5</span>:<span class="number">50</span> <span class="comment">//可以存在数值属性，但会自动转换成字符串</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在使用对象字面量表示法定义对象时，并不会实际调用 Object 构造函数。</span></span><br></pre></td></tr></table></figure>
+
+<p>存取对象的两种方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 点语法</span></span><br><span class="line">obj.<span class="property">name</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 中括号</span></span><br><span class="line">obj[<span class="string">&quot;name&quot;</span>] <span class="comment">//括号内使用属性名的字符串形式</span></span><br><span class="line"><span class="comment">// 中括号可以存取属性是变量的</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>与其他编程语言不同的是：</p>
+<ol>
+<li>数组中的每一个位置都可以存储任意类型的数据，不是只能存储单一类型的数据。</li>
+<li>数组的长度是动态大小的。</li>
+</ol>
+<h3 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h3><p>使用Array构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=<span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr=<span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">10</span>); <span class="comment">//指定长度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> colors = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="string">&quot;red&quot;</span>, <span class="string">&quot;blue&quot;</span>, <span class="string">&quot;green&quot;</span>); <span class="comment">//也可以直接传入要保存的值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr=<span class="keyword">new</span> <span class="title class_">Array</span>(<span class="string">&quot;qin&quot;</span>); <span class="comment">//传入是字符串</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr); <span class="comment">// [&#x27;qin&#x27;] 就只有一个元素</span></span><br></pre></td></tr></table></figure>
+
+<p>使用数组字面量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">&quot;red&quot;</span>, <span class="string">&quot;blue&quot;</span>, <span class="string">&quot;green&quot;</span>]; <span class="comment">// 创建一个包含 3 个元素的数组</span></span><br><span class="line"><span class="keyword">let</span> names = []; <span class="comment">// 创建一个空数组</span></span><br><span class="line"><span class="keyword">let</span> values = [<span class="number">1</span>,<span class="number">2</span>,]; <span class="comment">// 创建一个包含 2 个元素的数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//与对象一样，在使用数组字面量表示法创建数组不会调用 Array 构造函数。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="转换成数组的两个静态方法"><a href="#转换成数组的两个静态方法" class="headerlink" title="转换成数组的两个静态方法"></a>转换成数组的两个静态方法</h3><h4 id="1-from"><a href="#1-from" class="headerlink" title="1. from()"></a>1. from()</h4><p>用于将类数组结构转换为数组实例</p>
+<ul>
+<li><p>参数1：一个类数组对象，即任何可迭代的结构，或者有一个 length 属性和可索引元素的结构。</p>
+</li>
+<li><p>参数2：接收第二个可选的映射函数参数，这个函数可以直接增强新数组的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = <span class="title class_">Array</span>.<span class="title function_">from</span>(a1, <span class="function"><span class="params">x</span> =&gt;</span> x**<span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a2); <span class="comment">// [1, 4, 9, 16]</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-of"><a href="#2-of" class="headerlink" title="2. of()"></a>2. of()</h4><p>可以把一组参数转换为数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="title function_">of</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)); <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="title function_">of</span>(<span class="literal">undefined</span>)); <span class="comment">// [undefined]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数组空位"><a href="#数组空位" class="headerlink" title="数组空位"></a>数组空位</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用数组字面量初始化数组时，可以使用一串逗号来创建空位（hole）</span></span><br><span class="line"><span class="keyword">const</span> options = [,,,,,]; <span class="comment">// 创建包含 5 个元素的数组</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(options.<span class="property">length</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(options); <span class="comment">// [,,,,,]</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 新增方法普遍将这些空位当成存在的元素，只不过值为 undefined。</p>
+<p>由于行为不一致和存在性能隐患，因此实践中要避免使用数组空位。如果确实需要空位，则可以显式地用 undefined 值代替。</p>
+<h3 id="数组索引"><a href="#数组索引" class="headerlink" title="数组索引"></a>数组索引</h3><p>数组 length 属性的独特之处在于，它不是只读的。通过修改 length 属性，可以从数组末尾删除或添加元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="keyword">let</span> colors = [<span class="string">&quot;red&quot;</span>, <span class="string">&quot;blue&quot;</span>, <span class="string">&quot;green&quot;</span>]; <span class="comment">// 创建一个包含 3 个字符串的数组</span></span><br><span class="line">colors.<span class="property">length</span> = <span class="number">2</span>;</span><br><span class="line"><span class="title function_">alert</span>(colors[<span class="number">2</span>]); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加</span></span><br><span class="line"><span class="keyword">let</span> colors = [<span class="string">&quot;red&quot;</span>, <span class="string">&quot;blue&quot;</span>, <span class="string">&quot;green&quot;</span>]; <span class="comment">// 创建一个包含 3 个字符串的数组</span></span><br><span class="line">colors.<span class="property">length</span> = <span class="number">4</span>;</span><br><span class="line"><span class="title function_">alert</span>(colors[<span class="number">3</span>]); <span class="comment">// undefined 新添加的元素都将以undefined 填充</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用 length 属性可以方便地向数组末尾添加元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">&quot;red&quot;</span>, <span class="string">&quot;blue&quot;</span>, <span class="string">&quot;green&quot;</span>]; <span class="comment">// 创建一个包含 3 个字符串的数组</span></span><br><span class="line">colors[colors.<span class="property">length</span>] = <span class="string">&quot;black&quot;</span>; <span class="comment">// 添加一种颜色（位置 3）</span></span><br><span class="line">colors[colors.<span class="property">length</span>] = <span class="string">&quot;brown&quot;</span>; <span class="comment">// 再添加一种颜色（位置 4）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="检测数组"><a href="#检测数组" class="headerlink" title="检测数组"></a>检测数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr <span class="keyword">instanceof</span> <span class="title class_">Array</span>); <span class="comment">// 要考虑全局作用域</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="title function_">isArray</span>(arr)); <span class="comment">// 不用考虑</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代器方法"><a href="#迭代器方法" class="headerlink" title="迭代器方法"></a>迭代器方法</h3><ol>
+<li>keys()返回数组索引的迭代器</li>
+<li>values()返回数组元素的迭代器</li>
+<li>entries()返回索引&#x2F;值 对的迭代器</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;baz&quot;</span>, <span class="string">&quot;qux&quot;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">keys</span>()); <span class="comment">//Object [Array Iterator] &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为这些方法都返回迭代器，所以可以将它们的内容通过 Array.from()直接转换为数组实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> aKeys = <span class="title class_">Array</span>.<span class="title function_">from</span>(a.<span class="title function_">keys</span>());</span><br><span class="line"><span class="keyword">const</span> aValues = <span class="title class_">Array</span>.<span class="title function_">from</span>(a.<span class="title function_">values</span>());</span><br><span class="line"><span class="keyword">const</span> aEntries = <span class="title class_">Array</span>.<span class="title function_">from</span>(a.<span class="title function_">entries</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(aKeys); <span class="comment">// [0, 1, 2, 3]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(aValues); <span class="comment">// [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;, &quot;qux&quot;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(aEntries); <span class="comment">// [[0, &quot;foo&quot;], [1, &quot;bar&quot;], [2, &quot;baz&quot;], [3, &quot;qux&quot;]]</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 ES6 的解构可以非常容易地在循环中拆分键&#x2F;值对：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;baz&quot;</span>, <span class="string">&quot;qux&quot;</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [idx, element] <span class="keyword">of</span> a.<span class="title function_">entries</span>()) &#123;</span><br><span class="line"><span class="title function_">alert</span>(idx);</span><br><span class="line"><span class="title function_">alert</span>(element);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// foo</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// bar</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// baz</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// qux</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="复制和填充方法"><a href="#复制和填充方法" class="headerlink" title="复制和填充方法"></a>复制和填充方法</h3><p>fill()方法可以向一个已有的数组中插入全部或部分相同的值。</p>
+<p>copyWithin()会按照指定范围浅复制数组中的部分内容，然后将它们插入到指定索引开始的位置。</p>
+<h3 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h3><p>所有对象都有 toLocaleString()、toString()和 valueOf()方法。</p>
+<p>其中，valueOf()返回的还是数组本身。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;baz&quot;</span>, <span class="string">&quot;qux&quot;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">valueOf</span>()); <span class="comment">// [ &#x27;foo&#x27;, &#x27;bar&#x27;, &#x27;baz&#x27;, &#x27;qux&#x27; ]</span></span><br></pre></td></tr></table></figure>
+
+<p>toString()即将所有字符串组合起来，以逗号分隔。</p>
+<p>toLocaleString()方法也可能返回跟 toString()和 valueOf()相同的结果，但也不一定。如果有toLocaleString()方法，且内容和toString()方法不一样的话，会调toLocaleString()。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person1 = &#123;</span><br><span class="line">  <span class="title function_">toLocaleString</span>(<span class="params"></span>) &#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="string">&quot;Nikolaos&quot;</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Nicholas&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>join()方法接收一个参数，即字符串分隔符，返回包含所有项的字符串。不传这个参数则默认使用逗号分隔符。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;baz&quot;</span>, <span class="string">&quot;qux&quot;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">join</span>(<span class="string">&quot;-&quot;</span>)); <span class="comment">//foo-bar-baz-qux</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="栈方法"><a href="#栈方法" class="headerlink" title="栈方法"></a>栈方法</h3><p>后进先出，操作的是数组的尾部。</p>
+<p>push()方法接收任意数量的参数，并将它们添加到数组末尾，返回数组的最新长度。</p>
+<p>pop()方法则用于删除数组的最后一项，同时减少数组的 length 值，返回被删除的项。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">push</span>(<span class="string">&quot;qin&quot;</span>, <span class="string">&quot;rong&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">pop</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// [ &#x27;foo&#x27;, &#x27;bar&#x27;, &#x27;qin&#x27;, &#x27;rong&#x27; ]</span></span><br><span class="line"><span class="comment">// rong</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="队列方法"><a href="#队列方法" class="headerlink" title="队列方法"></a>队列方法</h3><p>先进先出，像排队一样。操作的是数组的头部。</p>
+<p> shift()方法删除数组的第一项并返回它，然后数组长度减 1。</p>
+<p>unshift()方法在数组开头添加任意多个值，然后返回新的数组长度。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">shift</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">unshift</span>(<span class="string">&quot;qin&quot;</span>, <span class="string">&quot;rong&quot;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">// foo</span></span><br><span class="line"><span class="comment">// [ &#x27;bar&#x27; ]</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// [ &#x27;qin&#x27;, &#x27;rong&#x27;, &#x27;bar&#x27; ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="排序方法"><a href="#排序方法" class="headerlink" title="排序方法"></a>排序方法</h3><p>reverse()方法只是对数组元素反向排列。</p>
+<p>sort()方法：</p>
+<ol>
+<li><p>默认情况下，按照升序重新排列数组元素，即最小的值在前面，最大的值在后面。</p>
+</li>
+<li><p>但sort()会在每一项上调用String()转型函数，然后通过比较字符串来决定顺序，即使数组元素都是数值，也会转换成字符串比较。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">&quot;1&quot;</span>, <span class="string">&quot;5&quot;</span>, <span class="string">&quot;10&quot;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">sort</span>());</span><br><span class="line"><span class="comment">// [ &#x27;1&#x27;, &#x27;10&#x27;, &#x27;5&#x27; ]</span></span><br></pre></td></tr></table></figure>
+
+<p> 这明显是不合适的。</p>
+</li>
+</ol>
+<h4 id="比较函数"><a href="#比较函数" class="headerlink" title="比较函数"></a>比较函数</h4><p>用于判断哪个值应该排在前面，通常配合sort()用来排序。</p>
+<p>比较函数接收两个参数，如果第一个参数应该排在第二个参数前面，就返回负值；如果两个参数相等，就返回 0；如果第一个参数应该排在第二个参数后面，就返回正值。</p>
+<p>sort()会根据比较函数返回的0，-1，1这三个结果里面做出相应的判断是否需要交换两个值，当比较函数返回正数时才交换顺序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">compare</span>(<span class="params">value1, value2</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (value1 &lt; value2) &#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value1 &gt; value2) &#123;</span><br><span class="line">  	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">sort</span>(compare));</span><br><span class="line"><span class="comment">//[ 10, 5, 1 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>如果数组的元素是数值，或者是其 valueOf()方法返回数值的对象（如 Date 对象），这个比较函数还可以写得更简单，因为这时可以直接用第二个值减去第一个值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">compare</span>(<span class="params">value1, value2</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> value2 - value1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//因为此减法操作就可以实现返回-1，0，1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h3><p>concat()方法：先创建一个当前数组的副本，再把concat()的参数添加到副本的末尾，最后返回这个新构建的数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>];</span><br><span class="line"><span class="keyword">let</span> brr = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">concat</span>(<span class="string">&quot;red&quot;</span>)); <span class="comment">// [ 1, 5, 10, &#x27;red&#x27; ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">concat</span>(brr)); <span class="comment">// [ 1, 5, 10, 2, 4, 6 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>slice()方法：返回一个包含原数组中1个或多个元素的<u>新数组。此方法不影响原数组。</u></p>
+<p>接收两个参数：返回元素的开始索引和结束索引。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">slice</span>(<span class="number">2</span>, <span class="number">4</span>)); <span class="comment">// [ 10, 2 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>splice()方法：最强大的数组方法，这种方法会改变原始数组。</p>
+<ul>
+<li><strong>删除</strong>。需要给 splice()传 2 个参数：要删除的第一个元素的位置和要删除的元素数量。可以从数组中删除任意多个元素，比如 splice(0, 2)会删除前两个元素。</li>
+<li><strong>插入</strong>。需要给 splice()传 3 个参数：开始位置、0（要删除的元素数量）和要插入的元素，可以在数组中指定的位置插入元素。第三个参数之后还可以传第四个、第五个参数，乃至任意多个要插入的元素。比如，splice(2, 0, “red”, “green”)会从数组位置 2 开始插入字符串”red”和”green”。</li>
+<li><strong>替换</strong>。splice()在删除元素的同时可以在指定位置插入新元素，同样要传入 3 个参数：开始位置、要删除元素的数量和要插入的任意多个元素。要插入的元素数量不一定跟删除的元素数量一致。比如，splice(2, 1, “red”, “green”)会在位置 2 删除一个元素，然后从该位置开始向数组中插入”red”和”green”。</li>
+</ul>
+<h3 id="搜索和位置方法"><a href="#搜索和位置方法" class="headerlink" title="搜索和位置方法"></a>搜索和位置方法</h3><h4 id="严格相等搜索"><a href="#严格相等搜索" class="headerlink" title="严格相等搜索"></a>严格相等搜索</h4><ol>
+<li><p>indexOf()：从前往后搜索</p>
+</li>
+<li><p>lastIndexOf()：从后往前搜索</p>
+<p> 以上两个方法返回查找元素在数组中的位置，没找到的话返回-1。</p>
+</li>
+<li><p>includes()：ES7新增，从前往后搜索，返回true或false</p>
+</li>
+</ol>
+<p>这三种方法使用全等(&#x3D;&#x3D;&#x3D;)比较，都接收两个参数：</p>
+<ol>
+<li>要查找的元素</li>
+<li>可选的起始搜索位置</li>
+</ol>
+<h4 id="断言函数搜索"><a href="#断言函数搜索" class="headerlink" title="断言函数搜索"></a>断言函数搜索</h4><p>断言函数接收 3 个参数：元素、索引和数组本身。其中元素是数组中当前搜索的元素，索引是当前元素的索引，而数组就是正在搜索的数组。断言函数返回真值，表示是否匹配。<br>find()和 findIndex()方法使用了断言函数。这两个方法都从数组的最小索引开始。find()返回第一个匹配的元素，findIndex()返回第一个匹配元素的索引。这两个方法也都接收第二个可选的参数，用于指定断言函数内部 this 的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Matt&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">27</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Nicholas&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">29</span></span><br><span class="line">&#125;</span><br><span class="line">];</span><br><span class="line"><span class="title function_">alert</span>(people.<span class="title function_">find</span>(<span class="function">(<span class="params">element, index, array</span>) =&gt;</span> element.<span class="property">age</span> &lt; <span class="number">28</span>));</span><br><span class="line"><span class="comment">// &#123;name: &quot;Matt&quot;, age: 27&#125;</span></span><br><span class="line"><span class="title function_">alert</span>(people.<span class="title function_">findIndex</span>(<span class="function">(<span class="params">element, index, array</span>) =&gt;</span> element.<span class="property">age</span> &lt; <span class="number">28</span>));</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+<p>找到匹配项后，这两个方法都不再继续搜索。</p>
+<h3 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h3><p>有5个迭代方法，每个方法接收两个参数：</p>
+<ol>
+<li>每一项都运行的函数，函数中接收三个参数：(item, index, array)</li>
+<li>可选作为函数运行上下文的作用域对象</li>
+</ol>
+<p><strong>every()</strong>:对数组每一项都运行传入的函数，如果对每一项函数都返回 true，则这个方法返回 true。</p>
+<p><strong>some()</strong>:对数组每一项都运行传入的函数，如果有一项函数返回 true，则这个方法返回 true。</p>
+<p> <strong>filter()：</strong>对数组每一项都运行传入的函数，函数<strong>返回</strong> true 的项会组成<strong>数组</strong>之后返回。</p>
+<p><strong>map()：</strong>对数组每一项都运行传入的函数，<strong>返回</strong>由每次函数调用的结果构成的<strong>数组</strong>。</p>
+<p><strong>forEach</strong>()：对数组每一项都运行传入的函数，没有返回值。</p>
+<p><strong><u>这些方法都不改变调用它们的数组。</u></strong></p>
+<h3 id="归并方法"><a href="#归并方法" class="headerlink" title="归并方法"></a>归并方法</h3><p>ECMAScript 为数组提供了两个归并方法：reduce()和 reduceRight()。这两个方法都会迭代数组的所有项，并在此基础上构建一个最终返回值。reduce()方法从数组第一项开始遍历到最后一项。而 reduceRight()从最后一项开始遍历至第一项。</p>
+<p>这两个方法都接收两个参数：对每一项都会运行的归并函数，以及可选的以之为归并起点的初始值。传给 reduce()和 reduceRight()的函数接收 4 个参数：上一个归并值、当前项、当前项的索引和数组本身。这个函数返回的任何值都会作为下一次调用同一个函数的第一个参数。</p>
+<p>如果没有给这两个方法传入可选的第二个参数（作为归并起点值），则第一次迭代将从数组的第二项开始，因此传给归并函数的第一个参数是数组的第一项，第二个参数是数组的第二项。</p>
+<p>可以使用 reduce()函数执行累加数组中所有数值的操作，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> sum = values.<span class="title function_">reduce</span>(<span class="function">(<span class="params">prev, cur, index, array</span>) =&gt;</span> prev + cur);</span><br><span class="line"><span class="title function_">alert</span>(sum); <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次执行归并函数时，prev 是 1，cur 是 2。第二次执行时，prev 是 3（1 + 2），cur 是 3（数组第三项）。如此递进，直到把所有项都遍历一次，最后返回归并结果reduceRight()方法与之类似，只是方向相反。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">集合引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Object"><span class="toc-number">1.1.</span> <span class="toc-text">Object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.2.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">转换成数组的两个静态方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-from"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1. from()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-of"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2. of()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%A9%BA%E4%BD%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">数组空位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B4%A2%E5%BC%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">数组索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.5.</span> <span class="toc-text">检测数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.6.</span> <span class="toc-text">迭代器方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%92%8C%E5%A1%AB%E5%85%85%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.7.</span> <span class="toc-text">复制和填充方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.8.</span> <span class="toc-text">转换方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.9.</span> <span class="toc-text">栈方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.10.</span> <span class="toc-text">队列方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.11.</span> <span class="toc-text">排序方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.11.1.</span> <span class="toc-text">比较函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.12.</span> <span class="toc-text">操作方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%92%8C%E4%BD%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.13.</span> <span class="toc-text">搜索和位置方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.13.1.</span> <span class="toc-text">严格相等搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%AD%E8%A8%80%E5%87%BD%E6%95%B0%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.13.2.</span> <span class="toc-text">断言函数搜索</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.14.</span> <span class="toc-text">迭代方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.15.</span> <span class="toc-text">归并方法</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&text=学习JavaScript-集合引用类型"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&is_video=false&description=学习JavaScript-集合引用类型"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-集合引用类型&body=Check out this article: https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=学习JavaScript-集合引用类型"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&name=学习JavaScript-集合引用类型&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/08/24/%E5%AD%A6%E4%B9%A0JavaScript-%E9%9B%86%E5%90%88%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&t=学习JavaScript-集合引用类型"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
