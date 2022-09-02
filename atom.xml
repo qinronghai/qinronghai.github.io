@@ -6,7 +6,7 @@
   <link href="https://qinronghai.github.io/atom.xml" rel="self"/>
   
   <link href="https://qinronghai.github.io/"/>
-  <updated>2022-08-31T12:37:15.635Z</updated>
+  <updated>2022-09-02T04:47:46.483Z</updated>
   <id>https://qinronghai.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习JavaScript-继承</title>
+    <link href="https://qinronghai.github.io/2022/09/02/%E5%AD%A6%E4%B9%A0JavaScript-%E7%BB%A7%E6%89%BF/"/>
+    <id>https://qinronghai.github.io/2022/09/02/%E5%AD%A6%E4%B9%A0JavaScript-%E7%BB%A7%E6%89%BF/</id>
+    <published>2022-09-02T04:47:34.000Z</published>
+    <updated>2022-09-02T04:47:46.483Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;JavaScript通过原型链实现继承。&lt;/p&gt;
+&lt;h2 id=&quot;原型链&quot;&gt;&lt;a href=&quot;#原型链&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="JavaScript" scheme="https://qinronghai.github.io/tags/JavaScript/"/>
+    
+    <category term="学习笔记" scheme="https://qinronghai.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>学习JavaScript-构造函数和原型</title>
@@ -506,35 +532,6 @@
     <category term="湾大杂货铺" scheme="https://qinronghai.github.io/tags/%E6%B9%BE%E5%A4%A7%E6%9D%82%E8%B4%A7%E9%93%BA/"/>
     
     <category term="募捐" scheme="https://qinronghai.github.io/tags/%E5%8B%9F%E6%8D%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python实现自动化登录校园网</title>
-    <link href="https://qinronghai.github.io/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/"/>
-    <id>https://qinronghai.github.io/2022/03/18/python%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%99%BB%E5%85%A5%E6%A0%A1%E5%9B%AD%E7%BD%91/</id>
-    <published>2022-03-18T07:36:47.000Z</published>
-    <updated>2022-03-19T06:44:34.227Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;本小项目的由来&quot;&gt;&lt;a href=&quot;#本小项目的由来&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="自动登录校园网" scheme="https://qinronghai.github.io/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E6%A0%A1%E5%9B%AD%E7%BD%91/"/>
-    
-    <category term="python" scheme="https://qinronghai.github.io/tags/python/"/>
-    
-    <category term="小项目" scheme="https://qinronghai.github.io/tags/%E5%B0%8F%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="北部湾大学" scheme="https://qinronghai.github.io/tags/%E5%8C%97%E9%83%A8%E6%B9%BE%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
