@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="学习JavaScript-类 在ES6中引入了class关键字，来正式定义类。这是一种语法糖结构，因为世界上它背后使用的任然式原型和构造函数的概念。  类定义类声明12&#x2F;&#x2F; 类声明class Person &amp;#123;&amp;#125;  类表达式12&#x2F;&#x2F; 类表达式const Animal &#x3D; class &amp;#123;&amp;#125;;  ✅与函数表达式类似，类表达式在它们被求值前也不能引用。 123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript-类">
+<meta property="og:url" content="https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="学习JavaScript-类 在ES6中引入了class关键字，来正式定义类。这是一种语法糖结构，因为世界上它背后使用的任然式原型和构造函数的概念。  类定义类声明12&#x2F;&#x2F; 类声明class Person &amp;#123;&amp;#125;  类表达式12&#x2F;&#x2F; 类表达式const Animal &#x3D; class &amp;#123;&amp;#125;;  ✅与函数表达式类似，类表达式在它们被求值前也不能引用。 123456">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-03T14:41:03.000Z">
+<meta property="article:modified_time" content="2022-09-03T14:42:08.228Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>学习JavaScript-类</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/09/02/%E5%AD%A6%E4%B9%A0JavaScript-%E7%BB%A7%E6%89%BF/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&text=学习JavaScript-类"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&is_video=false&description=学习JavaScript-类"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-类&body=Check out this article: https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&name=学习JavaScript-类&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&t=学习JavaScript-类"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">学习JavaScript-类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">类定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.1.</span> <span class="toc-text">类声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">类表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E6%9E%84%E6%88%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">类的构成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">类构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8A%8A%E7%B1%BB%E5%BD%93%E6%88%90%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 把类当成特殊函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%B1%BB%E6%88%90%E5%91%98"><span class="toc-number">1.3.</span> <span class="toc-text">实例、原型和类成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E4%BE%8B%E6%88%90%E5%91%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 实例成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%9F%E5%9E%8B%E6%96%B9%E6%B3%95%E4%B8%8E%E8%AE%BF%E9%97%AE%E5%99%A8"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 原型方法与访问器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9D%99%E6%80%81%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.静态类方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">1.4.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BB%A7%E6%89%BF%E5%9F%BA%E7%A1%80"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 继承基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81HomeObject%E5%92%8Csuper"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 构造函数、HomeObject和super()</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        学习JavaScript-类
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-09-03T14:41:03.000Z" itemprop="datePublished">2022-09-03</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="学习JavaScript-类"><a href="#学习JavaScript-类" class="headerlink" title="学习JavaScript-类"></a>学习JavaScript-类</h1><blockquote>
+<p>在ES6中引入了class关键字，来正式定义类。这是一种语法糖结构，因为世界上它背后使用的任然式原型和构造函数的概念。</p>
+</blockquote>
+<h2 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h2><h3 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类声明</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类表达式</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Animal</span> = <span class="keyword">class</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>✅与函数表达式类似，类表达式在它们被求值前也不能引用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数表达式</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionExpression</span>); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">FunctionExpression</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionExpression</span>); <span class="comment">// function() &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">FunctionExpression</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionExpression</span>); <span class="comment">// 函数未被引用</span></span><br><span class="line"><span class="title class_">FunctionExpression</span>=<span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionExpression</span>); <span class="comment">// function() &#123;&#125; 前一句已经引用了</span></span><br><span class="line">---</span><br><span class="line"><span class="comment">// 类表达式</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassExpression</span>); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">ClassExpression</span> = <span class="keyword">class</span> &#123;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassExpression</span>); <span class="comment">// class &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">ClassExpression</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassExpression</span>); <span class="comment">// undefined</span></span><br><span class="line"><span class="title class_">ClassExpression</span> = <span class="keyword">class</span> &#123;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassExpression</span>); <span class="comment">// class &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>❎与函数定义不同的是，虽然函数声明可以提升，但类定义不能。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数声明-&gt;可以提升</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionDeclaration</span>); <span class="comment">// FunctionDeclaration() &#123;&#125;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">FunctionDeclaration</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionDeclaration</span>); <span class="comment">// FunctionDeclaration() &#123;&#125;</span></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">FunctionDeclaration</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionDeclaration</span>); <span class="comment">// FunctionDeclaration() &#123;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionDeclaration</span>); <span class="comment">// FunctionDeclaration() &#123;&#125;</span></span><br><span class="line">---</span><br><span class="line"><span class="comment">// 类声明-&gt;不能提升</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassDeclaration</span>); <span class="comment">// ReferenceError: ClassDeclaration is not defined</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ClassDeclaration</span> &#123;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassDeclaration</span>); <span class="comment">// class ClassDeclaration &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>关于函数声明提升与变量提升看这篇文章：</p>
+<p>❎另一个不同的是，函数受函数作用域限制，而类受块作用域限制。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">FunctionDeclaration</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">	<span class="keyword">class</span> <span class="title class_">ClassDeclaration</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionDeclaration</span>); <span class="comment">// FunctionDeclaration() &#123;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassDeclaration</span>); <span class="comment">// ReferenceError: ClassDeclaration is not defined</span></span><br><span class="line"><span class="comment">// 函数虽然在块中但是不影响函数声明的提升</span></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">FunctionDeclaration</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">class</span> <span class="title class_">ClassDeclaration</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">FunctionDeclaration</span>); <span class="comment">// FunctionDeclaration() &#123;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ClassDeclaration</span>); <span class="comment">// ReferenceError: ClassDeclaration is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类的构成"><a href="#类的构成" class="headerlink" title="类的构成"></a>类的构成</h3><blockquote>
+<p>类名通常大写；默认情况下，类中定义的代码都在严格模式下执行。</p>
+</blockquote>
+<p>类可以包括：构造方法、实例方法、获取函数、设置函数和静态类方法。</p>
+<h2 id="类构造函数"><a href="#类构造函数" class="headerlink" title="类构造函数"></a>类构造函数</h2><p>类中有一个<code>constructor</code>关键字，用于在类定义块内部创建类的构造函数。</p>
+<aside>
+💡 方法名constructor会告诉解释器在使用new操作符创建类的新实例时，应该调用这个函数。（和java的构造方法有点像啊）构造函数的定义不是必须的，不定义构造函数相当于将构造函数定义为空函数。
+
+</aside>
+
+<h3 id="1-实例化"><a href="#1-实例化" class="headerlink" title="1. 实例化"></a>1. 实例化</h3><p>使用new操作符实例化Person类的操作等于使用new调用其构造函数。也就是说，js解释器知道使用new和类意味着应该使用constructor函数进行实例化。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line"><span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;person ctor&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Vegetable</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">color</span> = <span class="string">&#x27;orange&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="title class_">Animal</span>();</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Person</span>(); <span class="comment">// person ctor</span></span><br><span class="line"><span class="keyword">let</span> v = <span class="keyword">new</span> <span class="title class_">Vegetable</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(v.<span class="property">color</span>); <span class="comment">// orange</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用new调用类的构造函数会执行的操作：</strong></p>
+<ol>
+<li>在内存中创建一个新的对象。</li>
+<li>这个新对象内部的[[prototype]]指针被赋值为构造函数的prototype属性。</li>
+<li>构造函数内部的this被赋值为这个对象（即this指向新对象）。</li>
+<li>执行构造函数内部的代码（给新对象添加属性）。</li>
+<li>如果构造函数返回非空对象，则返回该对象；否则返回刚创建的新对象。</li>
+</ol>
+<h3 id="2-把类当成特殊函数"><a href="#2-把类当成特殊函数" class="headerlink" title="2. 把类当成特殊函数"></a>2. 把类当成特殊函数</h3><p>ES类就是一种特殊函数，声明一个类周，通过typeof操作符检测类标识符，表明他是一个函数。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>);  <span class="comment">// class Person &#123;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Person</span>); <span class="comment">// function</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实例、原型和类成员"><a href="#实例、原型和类成员" class="headerlink" title="实例、原型和类成员"></a>实例、原型和类成员</h2><h3 id="1-实例成员"><a href="#1-实例成员" class="headerlink" title="1. 实例成员"></a>1. 实例成员</h3><p>通过new，会去执行类构造函数，在这个函数内，可恶意为新创建的实例添加‘自由属性’。在构造函数执行完事后，仍然可以给实例继续添加新成员。</p>
+<p>每个实例都对应唯一的成员对象，这意味着所有成员都不会在原型上共享。</p>
+<h3 id="2-原型方法与访问器"><a href="#2-原型方法与访问器" class="headerlink" title="2. 原型方法与访问器"></a>2. 原型方法与访问器</h3><p>为了在实例间共享方法，类定义语法把类块中定义的方法作为原型方法。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="comment">// 添加到 this 的所有内容都会存在于不同的实例上</span></span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">locate</span> = <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;instance&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">	<span class="comment">// 在类块中定义的所有内容都会定义在类的原型上</span></span><br><span class="line">	<span class="title function_">locate</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;prototype&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">p.<span class="title function_">locate</span>(); <span class="comment">// instance</span></span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="title function_">locate</span>(); <span class="comment">// prototype</span></span><br></pre></td></tr></table></figure>
+
+<p>类定义也支持获取和设置访问器。语法和普通对象一样</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">	<span class="keyword">set</span> <span class="title function_">name</span>(<span class="params">newName</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">name_</span> = newName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">get</span> <span class="title function_">name</span>() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name_</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">p.<span class="property">name</span> = <span class="string">&#x27;Jake&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p.<span class="property">name</span>); <span class="comment">// Jake</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-静态类方法"><a href="#3-静态类方法" class="headerlink" title="3.静态类方法"></a>3.静态类方法</h3><p>可以在类上定义静态类方法。这些方法通常用于执行不特定于实例的操作，也不要求存在类的实例。静态成员每个类上只能有一个。</p>
+<p>静态类方法属于类的，但不属于对象，在实例化对象之前可以通过 <strong>类名.方法名</strong> 调用静态方法。</p>
+<p>静态方法不能在对象上调用，只能在类中调用。</p>
+<p>相比于在类块中定义的方法，静态方法不是在原型上的，不会被实例继承，而是直接通过类来调用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="comment">// 添加到 this 的所有内容都会存在于不同的实例上</span></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">locate</span> = <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;instance&#x27;</span>, <span class="variable language_">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 定义在类的原型对象上</span></span><br><span class="line">	<span class="title function_">locate</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;prototype&#x27;</span>, <span class="variable language_">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 定义在类本身上</span></span><br><span class="line">	<span class="keyword">static</span> <span class="title function_">locate</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;class&#x27;</span>, <span class="variable language_">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">p.<span class="title function_">locate</span>(); <span class="comment">// instance, Person &#123;&#125;</span></span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="title function_">locate</span>(); <span class="comment">// prototype, &#123;constructor: ... &#125;</span></span><br><span class="line"><span class="comment">// 通过**类名.方法名** 调用静态方法。</span></span><br><span class="line"><span class="title class_">Person</span>.<span class="title function_">locate</span>(); <span class="comment">// class, class Person &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="1-继承基础"><a href="#1-继承基础" class="headerlink" title="1. 继承基础"></a>1. 继承基础</h3><p>ES6支持单继承。使用<code>extends</code>关键字，不仅可以继承一个类，也可以继承普通的构造函数。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;&#125;</span><br><span class="line"><span class="comment">// 继承类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bus</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"><span class="comment">// 继承普通构造函数</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Engineer</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Person</span> &#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 派生类都会通过原型链访问到类和原型上定义的方法。t<strong>his 的值会反映调用相应方法的实例或者类。</strong></p>
+<h3 id="2-构造函数、HomeObject和super"><a href="#2-构造函数、HomeObject和super" class="headerlink" title="2. 构造函数、HomeObject和super()"></a>2. 构造函数、HomeObject和super()</h3><p>子类的方法可以通过super关键字引用它们的原型。这个关键字只能在子类中使用，而且仅限于：</p>
+<ol>
+<li>构造函数</li>
+<li>实例方法</li>
+<li>静态方法内部</li>
+</ol>
+<p>在类构造函数中使用 super 可以调用父类构造函数。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">hasEngine</span> = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bus</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="comment">// 不要在调用 super()之前引用 this，否则会抛出 ReferenceError</span></span><br><span class="line">		<span class="variable language_">super</span>(); <span class="comment">// 相当于 super.constructor()</span></span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span> <span class="keyword">instanceof</span> <span class="title class_">Vehicle</span>); <span class="comment">// true</span></span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// Bus &#123; hasEngine: true &#125;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">Bus</span>();</span><br></pre></td></tr></table></figure>
+
+<p>在静态方法中可以通过 super 调用继承的类上定义的静态方法</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="title function_">identify</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;vehicle&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bus</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="title function_">identify</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">super</span>.<span class="title function_">identify</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Bus</span>.<span class="title function_">identify</span>(); <span class="comment">// vehicle</span></span><br></pre></td></tr></table></figure>
+
+<p>使用super()有很多注意事项：《javaScript高级程序设计》p261页</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">学习JavaScript-类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">类定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.1.</span> <span class="toc-text">类声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">类表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E6%9E%84%E6%88%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">类的构成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">类构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8A%8A%E7%B1%BB%E5%BD%93%E6%88%90%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 把类当成特殊函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%B1%BB%E6%88%90%E5%91%98"><span class="toc-number">1.3.</span> <span class="toc-text">实例、原型和类成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E4%BE%8B%E6%88%90%E5%91%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 实例成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%9F%E5%9E%8B%E6%96%B9%E6%B3%95%E4%B8%8E%E8%AE%BF%E9%97%AE%E5%99%A8"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 原型方法与访问器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9D%99%E6%80%81%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.静态类方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">1.4.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BB%A7%E6%89%BF%E5%9F%BA%E7%A1%80"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 继承基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81HomeObject%E5%92%8Csuper"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 构造函数、HomeObject和super()</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&text=学习JavaScript-类"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&is_video=false&description=学习JavaScript-类"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-类&body=Check out this article: https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&title=学习JavaScript-类"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&name=学习JavaScript-类&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/&t=学习JavaScript-类"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

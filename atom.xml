@@ -6,7 +6,7 @@
   <link href="https://qinronghai.github.io/atom.xml" rel="self"/>
   
   <link href="https://qinronghai.github.io/"/>
-  <updated>2022-09-02T04:47:46.483Z</updated>
+  <updated>2022-09-03T14:42:08.228Z</updated>
   <id>https://qinronghai.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习JavaScript-类</title>
+    <link href="https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/"/>
+    <id>https://qinronghai.github.io/2022/09/03/%E5%AD%A6%E4%B9%A0JavaScript-%E7%B1%BB/</id>
+    <published>2022-09-03T14:41:03.000Z</published>
+    <updated>2022-09-03T14:42:08.228Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;学习JavaScript-类&quot;&gt;&lt;a href=&quot;#学习JavaScript-类&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="JavaScript" scheme="https://qinronghai.github.io/tags/JavaScript/"/>
+    
+    <category term="学习笔记" scheme="https://qinronghai.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>学习JavaScript-继承</title>
@@ -502,36 +527,6 @@
     
     
     <category term="小记" scheme="https://qinronghai.github.io/tags/%E5%B0%8F%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>湾大杂货铺第二次募捐活动</title>
-    <link href="https://qinronghai.github.io/2022/03/19/%E6%B9%BE%E5%A4%A7%E6%9D%82%E8%B4%A7%E9%93%BA%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%8B%9F%E6%8D%90%E6%B4%BB%E5%8A%A8/"/>
-    <id>https://qinronghai.github.io/2022/03/19/%E6%B9%BE%E5%A4%A7%E6%9D%82%E8%B4%A7%E9%93%BA%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%8B%9F%E6%8D%90%E6%B4%BB%E5%8A%A8/</id>
-    <published>2022-03-19T06:17:29.000Z</published>
-    <updated>2022-03-19T06:47:37.925Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;时间：2022-03-18-12：00——2022-03-19-12：00（共计48小时）&lt;/p&gt;
-&lt;p&gt;发起人：开发者AHAI（QQ185043843）&lt;/p&gt;
-&lt;p&gt;具体内容：&lt;/p&gt;
-&lt;h2 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="北部湾大学" scheme="https://qinronghai.github.io/tags/%E5%8C%97%E9%83%A8%E6%B9%BE%E5%A4%A7%E5%AD%A6/"/>
-    
-    <category term="湾大杂货铺" scheme="https://qinronghai.github.io/tags/%E6%B9%BE%E5%A4%A7%E6%9D%82%E8%B4%A7%E9%93%BA/"/>
-    
-    <category term="募捐" scheme="https://qinronghai.github.io/tags/%E5%8B%9F%E6%8D%90/"/>
     
   </entry>
   
