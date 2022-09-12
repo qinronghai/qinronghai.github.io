@@ -6,7 +6,7 @@
   <link href="https://qinronghai.github.io/atom.xml" rel="self"/>
   
   <link href="https://qinronghai.github.io/"/>
-  <updated>2022-09-10T08:00:48.342Z</updated>
+  <updated>2022-09-12T14:48:12.992Z</updated>
   <id>https://qinronghai.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习JavaScript-客户端检测</title>
+    <link href="https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%A3%80%E6%B5%8B/"/>
+    <id>https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%A3%80%E6%B5%8B/</id>
+    <published>2022-09-12T14:47:58.000Z</published>
+    <updated>2022-09-12T14:48:12.992Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;学习JavaScript-客户端检测&quot;&gt;&lt;a href=&quot;#学习JavaScript-客户端检测&quot; class=&quot;headerlink&quot; title=&quot;学习JavaScript-客户端检测&quot;&gt;&lt;/a&gt;学习JavaScript-客户端检测&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="JavaScript" scheme="https://qinronghai.github.io/tags/JavaScript/"/>
+    
+    <category term="学习笔记" scheme="https://qinronghai.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习JavaScript-BOM</title>
+    <link href="https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/"/>
+    <id>https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/</id>
+    <published>2022-09-12T13:40:27.000Z</published>
+    <updated>2022-09-12T13:40:39.508Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;学习JavaScript-BOM&quot;&gt;&lt;a href=&quot;#学习JavaScript-BOM&quot; class=&quot;headerlink&quot; title=&quot;学习JavaScript-BOM&quot;&gt;&lt;/a&gt;学习JavaScript-BOM&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="JavaScript" scheme="https://qinronghai.github.io/tags/JavaScript/"/>
+    
+    <category term="学习笔记" scheme="https://qinronghai.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>学习JavaScript-Promise、async和await</title>
@@ -479,56 +529,6 @@
     <category term="Auto.js" scheme="https://qinronghai.github.io/tags/Auto-js/"/>
     
     <category term="UI" scheme="https://qinronghai.github.io/tags/UI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Auto.js-脚本间互相调用的问题</title>
-    <link href="https://qinronghai.github.io/2022/07/19/Auto.js-%E8%84%9A%E6%9C%AC%E9%97%B4%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>https://qinronghai.github.io/2022/07/19/Auto.js-%E8%84%9A%E6%9C%AC%E9%97%B4%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</id>
-    <published>2022-07-19T02:24:47.000Z</published>
-    <updated>2022-07-19T03:05:47.319Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;遇到的问题：&quot;&gt;&lt;a href=&quot;#遇到的问题：&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Auto.js" scheme="https://qinronghai.github.io/tags/Auto-js/"/>
-    
-    <category term="javaScript" scheme="https://qinronghai.github.io/tags/javaScript/"/>
-    
-    <category term="模块" scheme="https://qinronghai.github.io/tags/%E6%A8%A1%E5%9D%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2022年4月复盘</title>
-    <link href="https://qinronghai.github.io/2022/05/07/2022%E5%B9%B44%E6%9C%88%E6%80%BB%E7%BB%93/"/>
-    <id>https://qinronghai.github.io/2022/05/07/2022%E5%B9%B44%E6%9C%88%E6%80%BB%E7%BB%93/</id>
-    <published>2022-05-07T10:51:21.000Z</published>
-    <updated>2022-05-07T10:52:06.118Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;开场白&quot;&gt;&lt;a href=&quot;#开场白&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="月度总结" scheme="https://qinronghai.github.io/tags/%E6%9C%88%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   

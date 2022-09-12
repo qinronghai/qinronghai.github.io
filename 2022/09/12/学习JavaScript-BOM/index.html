@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="学习JavaScript-BOM什么是BOMThe Browser Object Model(BOM) is the core of JavaScript on the web. The BOM provides you with objects that expose the web browser’s functionality. window对象window对象是BOM的核心，表示浏览器的实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript-BOM">
+<meta property="og:url" content="https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="学习JavaScript-BOM什么是BOMThe Browser Object Model(BOM) is the core of JavaScript on the web. The BOM provides you with objects that expose the web browser’s functionality. window对象window对象是BOM的核心，表示浏览器的实">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7c1c106-00dd-4fd4-b01d-8c9bbe5a0de1/Untitled.png">
+<meta property="article:published_time" content="2022-09-12T13:40:27.000Z">
+<meta property="article:modified_time" content="2022-09-12T13:40:39.508Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7c1c106-00dd-4fd4-b01d-8c9bbe5a0de1/Untitled.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>学习JavaScript-BOM</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%A3%80%E6%B5%8B/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/09/10/%E5%AD%A6%E4%B9%A0JavaScript-Promise%E3%80%81async%E5%92%8Cawait/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&text=学习JavaScript-BOM"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&is_video=false&description=学习JavaScript-BOM"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-BOM&body=Check out this article: https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&name=学习JavaScript-BOM&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&t=学习JavaScript-BOM"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0JavaScript-BOM"><span class="toc-number">1.</span> <span class="toc-text">学习JavaScript-BOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFBOM"><span class="toc-number">1.1.</span> <span class="toc-text">什么是BOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.</span> <span class="toc-text">window对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">Global 作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%85%B3%E7%B3%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">窗口关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%BD%8D%E7%BD%AE%E4%B8%8E%E5%83%8F%E7%B4%A0%E6%AF%94"><span class="toc-number">1.2.3.</span> <span class="toc-text">窗口位置与像素比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.2.4.</span> <span class="toc-text">窗口大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.2.5.</span> <span class="toc-text">视口位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E4%B8%8E%E6%89%93%E5%BC%80%E6%96%B0%E7%AA%97%E5%8F%A3"><span class="toc-number">1.2.6.</span> <span class="toc-text">导航与打开新窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-number">1.2.7.</span> <span class="toc-text">定时器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">1.2.8.</span> <span class="toc-text">系统对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#location-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.9.</span> <span class="toc-text">location 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#navigator%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.10.</span> <span class="toc-text">navigator对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#screen%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.11.</span> <span class="toc-text">screen对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#history-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.12.</span> <span class="toc-text">history 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.13.</span> <span class="toc-text">历史状态管理</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        学习JavaScript-BOM
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-09-12T13:40:27.000Z" itemprop="datePublished">2022-09-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="学习JavaScript-BOM"><a href="#学习JavaScript-BOM" class="headerlink" title="学习JavaScript-BOM"></a>学习JavaScript-BOM</h1><h2 id="什么是BOM"><a href="#什么是BOM" class="headerlink" title="什么是BOM"></a>什么是BOM</h2><p>The Browser Object Model(BOM) is the core of JavaScript on the web. The BOM provides you with objects that expose the web browser’s functionality.</p>
+<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p>window对象是BOM的核心，表示浏览器的实例，即一个浏览器窗口。可以表示js中的Golbal对象和浏览器窗口的js接口。</p>
+<h3 id="Global-作用域"><a href="#Global-作用域" class="headerlink" title="Global 作用域"></a>Global 作用域</h3><p>通过var声明的所有全局变量和函数都会变成window 对象的属性和方法。</p>
+<h3 id="窗口关系"><a href="#窗口关系" class="headerlink" title="窗口关系"></a>窗口关系</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://window.top/">window.top</a> 始终指向浏览器窗口本身。</li>
+<li>window.parent 指向当前窗口的父窗口。</li>
+<li>window.self 始终指向window。self 和 window是同一个对象</li>
+</ul>
+<h3 id="窗口位置与像素比"><a href="#窗口位置与像素比" class="headerlink" title="窗口位置与像素比"></a>窗口位置与像素比</h3><ul>
+<li>window.moveTo 移动到的新位置的绝对坐标</li>
+<li>window.moveBy 相对当前位置在两个方向上移动的像素数</li>
+</ul>
+<h3 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h3><ul>
+<li><p>innerWidth</p>
+</li>
+<li><p>innerHeight</p>
+<p>  上面这两个返回浏览器窗口中页面视口的大小（不包含浏览器边框和工具栏）</p>
+</li>
+<li><p>outerWidth</p>
+</li>
+<li><p>outerHeight</p>
+<p>  返回浏览器窗口自身的大小</p>
+</li>
+<li><p>document.documentElement.clientWidth</p>
+</li>
+<li><p>document.documentElement.clientHeight</p>
+<p>  返回页面视口的宽度和高度</p>
+<p>  <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7c1c106-00dd-4fd4-b01d-8c9bbe5a0de1/Untitled.png" alt="Untitled"></p>
+</li>
+</ul>
+<h3 id="视口位置"><a href="#视口位置" class="headerlink" title="视口位置"></a>视口位置</h3><p>浏览器窗口尺寸通常无法满足完整显示整个页面，就需要滚动。</p>
+<p>可以使用：</p>
+<ul>
+<li>scroll()</li>
+<li>scrollTo()</li>
+<li>scrollBy()</li>
+</ul>
+<p>这几个方法也都接收一个 ScrollToOptions 字典，除了提供偏移值，还可以通过 behavior 属性告诉浏览器是否平滑滚动。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正常滚动</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">scrollTo</span>(&#123;</span><br><span class="line">	<span class="attr">left</span>: <span class="number">100</span>,</span><br><span class="line">	<span class="attr">top</span>: <span class="number">100</span>,</span><br><span class="line">	<span class="attr">behavior</span>: <span class="string">&#x27;auto&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 平滑滚动</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">scrollTo</span>(&#123;</span><br><span class="line">	<span class="attr">left</span>: <span class="number">100</span>,</span><br><span class="line">	<span class="attr">top</span>: <span class="number">100</span>,</span><br><span class="line">	<span class="attr">behavior</span>: <span class="string">&#x27;smooth&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="导航与打开新窗口"><a href="#导航与打开新窗口" class="headerlink" title="导航与打开新窗口"></a>导航与打开新窗口</h3><p>window.open()</p>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p><code>setTimeout()</code> </p>
+<p>js是单线程，其维护了一个任务队列，其中的任务会按照添加到队列的先后顺序执行，setTimeout()的第二个参数只是告诉 JavaScript 引擎在指定的毫秒数过后把任务添加到这个队列。如果队列是空的，则会立即执行该代码。如果队列不是空的，则代码必须等待前面的任务执行完才能执行。</p>
+<p><strong>取消超时任务</strong></p>
+<p>setTimeout()会返回一个timeId唯一标识符，可用于在执行任务之前取消掉该任务。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置超时任务</span></span><br><span class="line"><span class="keyword">let</span> timeoutId = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">alert</span>(<span class="string">&quot;Hello world!&quot;</span>), <span class="number">1000</span>);</span><br><span class="line"><span class="comment">// 取消超时任务</span></span><br><span class="line"><span class="built_in">clearTimeout</span>(timeoutId);</span><br></pre></td></tr></table></figure>
+
+<p>在任务执行后在调用clearTimeout没有效果。</p>
+<p><code>setInterval()</code></p>
+<p>和setTimeout的使用方法类似，</p>
+<p>只不过指定的任务会每隔指定时间就执行一次，直到取消循环定时或者页面卸载。</p>
+<blockquote>
+<p>调用 setInterval()的时间为 01:00:00，间隔时间为 3000 毫秒。这意味着 01:00:03 时，浏览器会把任务添加到执行队列。浏览器不关心这个任务什么时候执行或者执行要花多长时间。因此，到了 01:00:06，它会再向队列中添加一个任务。</p>
+</blockquote>
+<h3 id="系统对话框"><a href="#系统对话框" class="headerlink" title="系统对话框"></a>系统对话框</h3><ul>
+<li><p>alter() 警告框</p>
+<p>  传入字符串，如果不是字符串，则调用toString方法转换为字符串。</p>
+</li>
+<li><p>confirm() 确认框</p>
+<p>  confirm()会返回确认时的true或取消时的false。</p>
+</li>
+<li><p>prompt() 提示框</p>
+<ul>
+<li>要显示给用户的文本</li>
+<li>文本框里的默认值，可以是空字符串</li>
+</ul>
+</li>
+</ul>
+<p>这些可以让浏览器调用系统对话框向用户显示消息，他们的样式是默认的，这些对话框都是同步的模态对话框，即在它们显示的时候，代码会停止执行，在它们消失以后，代码才会恢复执行。</p>
+<h3 id="location-对象"><a href="#location-对象" class="headerlink" title="location 对象"></a>location 对象</h3><p>是BOM最有用的对象之一，既是window的属性，也是document的属性。</p>
+<h3 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h3><p>Navigator 对象包含的属性描述了正在使用的浏览器。可以使用这些属性进行平台专用的配置。</p>
+<h3 id="screen对象"><a href="#screen对象" class="headerlink" title="screen对象"></a>screen对象</h3><p>每个 Window 对象的 screen 属性都引用一个 Screen 对象。Screen 对象中存放着有关显示浏览器屏幕的信息。JavaScript 程序将利用这些信息来优化它们的输出，以达到用户的显示要求。</p>
+<h3 id="history-对象"><a href="#history-对象" class="headerlink" title="history 对象"></a>history 对象</h3><p>history 对象表示当前窗口首次使用以来用户的导航历史记录。</p>
+<h3 id="历史状态管理"><a href="#历史状态管理" class="headerlink" title="历史状态管理"></a>历史状态管理</h3>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0JavaScript-BOM"><span class="toc-number">1.</span> <span class="toc-text">学习JavaScript-BOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFBOM"><span class="toc-number">1.1.</span> <span class="toc-text">什么是BOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.</span> <span class="toc-text">window对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">Global 作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%85%B3%E7%B3%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">窗口关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%BD%8D%E7%BD%AE%E4%B8%8E%E5%83%8F%E7%B4%A0%E6%AF%94"><span class="toc-number">1.2.3.</span> <span class="toc-text">窗口位置与像素比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.2.4.</span> <span class="toc-text">窗口大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.2.5.</span> <span class="toc-text">视口位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E4%B8%8E%E6%89%93%E5%BC%80%E6%96%B0%E7%AA%97%E5%8F%A3"><span class="toc-number">1.2.6.</span> <span class="toc-text">导航与打开新窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-number">1.2.7.</span> <span class="toc-text">定时器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">1.2.8.</span> <span class="toc-text">系统对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#location-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.9.</span> <span class="toc-text">location 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#navigator%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.10.</span> <span class="toc-text">navigator对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#screen%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.11.</span> <span class="toc-text">screen对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#history-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.12.</span> <span class="toc-text">history 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.13.</span> <span class="toc-text">历史状态管理</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&text=学习JavaScript-BOM"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&is_video=false&description=学习JavaScript-BOM"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-BOM&body=Check out this article: https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&title=学习JavaScript-BOM"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&name=学习JavaScript-BOM&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2022/09/12/%E5%AD%A6%E4%B9%A0JavaScript-BOM/&t=学习JavaScript-BOM"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
