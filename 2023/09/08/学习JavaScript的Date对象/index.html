@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="创建日期对象1. 不带参数显示当前日期和时间 12let now &#x3D; new Date();console.log(&quot;now&quot;, now); &#x2F;&#x2F; now Fri Sep 08 2023 09:13:55 GMT+0800 (中国标准时间)  2. 时间戳 表示1970年1月1日UTC+0之后经过的毫秒数 12let time &#x3D; new Date(1693497600000)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript的Date对象">
+<meta property="og:url" content="https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="创建日期对象1. 不带参数显示当前日期和时间 12let now &#x3D; new Date();console.log(&quot;now&quot;, now); &#x2F;&#x2F; now Fri Sep 08 2023 09:13:55 GMT+0800 (中国标准时间)  2. 时间戳 表示1970年1月1日UTC+0之后经过的毫秒数 12let time &#x3D; new Date(1693497600000)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTIyDLPlO3zZ0HeO/root/content">
+<meta property="article:published_time" content="2023-09-08T07:14:16.000Z">
+<meta property="article:modified_time" content="2023-09-08T07:25:18.563Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTIyDLPlO3zZ0HeO/root/content">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>学习JavaScript的Date对象</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/09/06/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93JavaScript%E4%B8%AD%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&text=学习JavaScript的Date对象"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&is_video=false&description=学习JavaScript的Date对象"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript的Date对象&body=Check out this article: https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&name=学习JavaScript的Date对象&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&t=学习JavaScript的Date对象"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">创建日期对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8D%E5%B8%A6%E5%8F%82%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1. 不带参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-number">1.2.</span> <span class="toc-text">2. 时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">3. 字符串 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-new-Date"><span class="toc-number">1.4.</span> <span class="toc-text">4. new Date()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-number">2.</span> <span class="toc-text">访问日期时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-getFullYear"><span class="toc-number">2.1.</span> <span class="toc-text">1.getFullYear()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-getMonth"><span class="toc-number">2.2.</span> <span class="toc-text">2.getMonth()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-getDate"><span class="toc-number">2.3.</span> <span class="toc-text">3.getDate()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-getHours-%EF%BC%8CgetMinutes-%EF%BC%8CgetSeconds-%EF%BC%8CgetMilliseconds-%E8%8E%B7%E5%8F%96%E7%9B%B8%E5%BA%94%E7%9A%84%E6%97%B6%E9%97%B4%E7%BB%84%E4%BB%B6%E3%80%82"><span class="toc-number">2.4.</span> <span class="toc-text">4.getHours()，getMinutes()，getSeconds()，getMilliseconds()获取相应的时间组件。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-getDay"><span class="toc-number">2.5.</span> <span class="toc-text">5.getDay()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-getTime"><span class="toc-number">2.6.</span> <span class="toc-text">6.getTime()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-getTimezoneOffset"><span class="toc-number">2.7.</span> <span class="toc-text">7.getTimezoneOffset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Date-now"><span class="toc-number">2.8.</span> <span class="toc-text">8.Date.now()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-valueOf"><span class="toc-number">2.9.</span> <span class="toc-text">9.valueOf()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">设置日期时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%A0%A1%E5%87%86"><span class="toc-number">4.</span> <span class="toc-text">自动校准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E5%AD%97"><span class="toc-number">5.</span> <span class="toc-text">日期转换为数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%80%BC"><span class="toc-number">6.</span> <span class="toc-text">日期差值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%97%A5%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%B0%83%E7%94%A8Date-parse"><span class="toc-number">7.</span> <span class="toc-text">对日期字符串调用Date.parse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%97%B6%E9%97%B4"><span class="toc-number">8.</span> <span class="toc-text">关于高精度时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">日期的表示方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F"><span class="toc-number">10.</span> <span class="toc-text">自定义日期格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E7%9A%84%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">10.1.</span> <span class="toc-text">高级的日期格式化</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        学习JavaScript的Date对象
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-08T07:14:16.000Z" itemprop="datePublished">2023-09-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="创建日期对象"><a href="#创建日期对象" class="headerlink" title="创建日期对象"></a>创建日期对象</h2><h3 id="1-不带参数"><a href="#1-不带参数" class="headerlink" title="1. 不带参数"></a>1. 不带参数</h3><p>显示当前日期和时间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> now = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;now&quot;</span>, now); <span class="comment">// now Fri Sep 08 2023 09:13:55 GMT+0800 (中国标准时间)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-时间戳"><a href="#2-时间戳" class="headerlink" title="2. 时间戳"></a>2. 时间戳</h3><p> 表示1970年1月1日UTC+0之后经过的毫秒数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> time = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">1693497600000</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;时间戳表示的时间&quot;</span>, time); <span class="comment">// 时间戳表示的时间 Fri Sep 01 2023 00:00:00 GMT+0800 (中国标准时间)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-字符串-参数"><a href="#3-字符串-参数" class="headerlink" title="3. 字符串 参数"></a>3. 字符串 参数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3.传入 一个 字符串 参数：会被自动解析</span></span><br><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&quot;2020-01-05&quot;</span>); <span class="comment">// 未指定具体时间，所以假定时间为格林尼治标准时间（GMT）的午夜零点</span></span><br><span class="line"><span class="comment">// 并根据运行代码时的用户的时区进行调整</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(date); <span class="comment">// Sun Jan 05 2020 08:00:00 GMT+0800 (中国标准时间)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-new-Date"><a href="#4-new-Date" class="headerlink" title="4. new Date()"></a>4. new Date()</h3><p><code>new Date(year, month, date, hours, minutes, seconds, ms)</code></p>
+<ul>
+<li>year 和 month 是必须的两个参数，其余参数不传则默认为 0</li>
+<li>year 强烈建议使用 4 位数 ：2002</li>
+<li>month 从 0（一月）到 11 （十二月）*</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> multi_parameter_time = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">2000</span>, <span class="number">5</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;多参数时间： &quot;</span>, multi_parameter_time); <span class="comment">// 多参数时间：  Thu Jun 01 2000 00:00:00 GMT+0800 (中国标准时间) 2000-06-01</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="访问日期时间"><a href="#访问日期时间" class="headerlink" title="访问日期时间"></a>访问日期时间</h2><h3 id="1-getFullYear"><a href="#1-getFullYear" class="headerlink" title="1.getFullYear()"></a>1.getFullYear()</h3><p>返回4位数年份,区别于非标准化的方法 getYear() 有可能返回的2位数年份</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;获取年&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getFullYear</span>()); <span class="comment">// 获取年 2023</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-getMonth"><a href="#2-getMonth" class="headerlink" title="2.getMonth()"></a>2.getMonth()</h3><p>获取月份从 0 - 11</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;获取月份&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getMonth</span>()); <span class="comment">// 获取月份 8 (相当于9月)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-getDate"><a href="#3-getDate" class="headerlink" title="3.getDate()"></a>3.getDate()</h3><p> 获取当月具体日期 1-31</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;获取当月具体日期&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getDate</span>()); <span class="comment">// 获取当月具体日期 8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-getHours-，getMinutes-，getSeconds-，getMilliseconds-获取相应的时间组件。"><a href="#4-getHours-，getMinutes-，getSeconds-，getMilliseconds-获取相应的时间组件。" class="headerlink" title="4.getHours()，getMinutes()，getSeconds()，getMilliseconds()获取相应的时间组件。"></a>4.getHours()，getMinutes()，getSeconds()，getMilliseconds()获取相应的时间组件。</h3><h3 id="5-getDay"><a href="#5-getDay" class="headerlink" title="5.getDay()"></a>5.getDay()</h3><p>获取一周中的第几天 0(星期天)-6(星期6)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;获取一周中的第几天&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getDay</span>()); <span class="comment">// 获取一周中的第几天 5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-getTime"><a href="#6-getTime" class="headerlink" title="6.getTime()"></a>6.getTime()</h3><p>将现有的Date对象转化为时间戳</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;当前时间戳&quot;</span>, now.<span class="title function_">getTime</span>());</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-getTimezoneOffset"><a href="#7-getTimezoneOffset" class="headerlink" title="7.getTimezoneOffset()"></a>7.getTimezoneOffset()</h3><p>返回UTC与本地时区之间的时差，以分钟为单位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;时差&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTimezoneOffset</span>());</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-Date-now"><a href="#8-Date-now" class="headerlink" title="8.Date.now()"></a>8.Date.now()</h3><p>Date类的静态方法,不需要new一个Date对象,因此它更快,不会对垃圾回收造成额外的压力<br>返回当前的时间戳, 相当于new Date().getTime()<br>此方法因方便和性能优越常常被考虑</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;当前时间戳&quot;</span>, <span class="title class_">Date</span>.<span class="title function_">now</span>());</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;是否相等&quot;</span>, <span class="title class_">Date</span>.<span class="title function_">now</span>() === <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>());</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-valueOf"><a href="#9-valueOf" class="headerlink" title="9.valueOf()"></a>9.valueOf()</h3><p><code>valueOf = getTime() = now() = +new Date()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;valueOf: &quot;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">valueOf</span>());</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置日期时间"><a href="#设置日期时间" class="headerlink" title="设置日期时间"></a>设置日期时间</h2><p>下列方法可以设置日期&#x2F;时间组件：<br>          1.setFullYear(year, [month], [date])<br>          2.setMonth(month, [date])  返回设置后的时间戳<br>          3.setDate(date)<br>          4.setHours(hour, [min], [sec], [ms])  返回设置后的时间戳<br>          5.setMinutes(min, [sec], [ms])<br>          6.setSeconds(sec, [ms])<br>          7.setMilliseconds(ms)<br>          8.setTime(milliseconds)（使用自 1970-01-01 00:00:00 UTC+0 以来的毫秒数来设置整个日期）</p>
+<p> 以上方法除了 setTime() 都有 UTC 变体，例如：setUTCHours()。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;设置月份&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">setMonth</span>(<span class="number">4</span>))); <span class="comment">// 设置月份 Mon May 08 2023 10:00:44 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;设置小时&quot;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">setHours</span>(<span class="number">12</span>))); <span class="comment">// 设置小时 Fri Sep 08 2023 12:04:37 GMT+0800 (中国标准时间)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="自动校准"><a href="#自动校准" class="headerlink" title="自动校准"></a>自动校准</h2><p>1.超出的范围的日期数值,会自动校准<br>2.计算日期, Date对象会自动帮处理: 如 2月28 + 2 日, 我们需要去判断是否闰年,而计算机直接自动帮助判断<br>3.此特性通常会被用来获取给的那个时间段后的日期: 如 现在 100秒 后的日期 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">let</span> nomalDate = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&quot;2023-08-31&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;nomalDate&quot;</span>, nomalDate); <span class="comment">// nomalDate Thu Aug 31 2023 08:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line">nomalDate.<span class="title function_">setDate</span>(nomalDate.<span class="title function_">getDate</span>() + <span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;over time&quot;</span>, nomalDate); <span class="comment">// over time Sat Sep 02 2023 08:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">2002</span>, <span class="number">1</span>, <span class="number">29</span>)); <span class="comment">// Fri Mar 01 2002 00:00:00 GMT+0800 (中国标准时间) 2002-3-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> currentDate = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;当前时间: &quot;</span> + currentDate);</span><br><span class="line">currentDate.<span class="title function_">setSeconds</span>(currentDate.<span class="title function_">getSeconds</span>() + <span class="number">100</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;当前时间后100秒:&quot;</span> + currentDate);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="日期转换为数字"><a href="#日期转换为数字" class="headerlink" title="日期转换为数字"></a>日期转换为数字</h2><p>Date对象被转化为数字时,得到的是对应的时间戳</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nDate = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;日期转换为数字&quot;</span>, +nDate);  </span><br></pre></td></tr></table></figure>
+
+<h2 id="日期差值"><a href="#日期差值" class="headerlink" title="日期差值"></a>日期差值</h2><p>日期可以相减, 相减的结果是以毫秒为单位时间差</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> start = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> end = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;日期差值&quot;</span>, end - start);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="对日期字符串调用Date-parse"><a href="#对日期字符串调用Date-parse" class="headerlink" title="对日期字符串调用Date.parse"></a>对日期字符串调用Date.parse</h2><p>Date.parse(str)方法可以从一个字符串中读取日期<br>会解析给定字符串,返回时间戳. 字符串格式不正确, 返回NaN<br>字符串格式应该为: YYYY-MM-DDTHH:mm:ss.sssZ<br> 1.YYYY-MM-DD —— 日期：年-月-日。<br> 2.字符 “T” 是一个分隔符。<br> 3.HH:mm:ss.sss —— 时间：小时，分钟，秒，毫秒。<br> 4.可选字符 ‘Z’ 为 +-hh:mm 格式的时区。单个字符 Z 代表 UTC+0 时区。<br> 5.简短形式也是可以的，比如 YYYY-MM-DD 或 YYYY-MM，甚至可以是 YYYY。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;解析字符串日期:&quot;</span>, <span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="string">&quot;2000-05-11T05:05:05.555Z&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于高精度时间"><a href="#关于高精度时间" class="headerlink" title="关于高精度时间"></a>关于高精度时间</h2><p>JavaScript中时间戳以毫秒为单位，而不是秒。</p>
+<p>当我们需要更精准的时间度量时，JavaScript自身并没有测量微妙的方法。</p>
+<p>但是大多数运行环境会提供：</p>
+<ol>
+<li>浏览器：&#x3D;&#x3D;performance.now() &#x3D;&#x3D;：从页面加载开始的以毫秒为单位的微妙数（精确到毫秒的小数点后三位）</li>
+<li>Node.js: &#x3D;&#x3D;microtime&#x3D;&#x3D;</li>
+</ol>
+<h2 id="日期的表示方式"><a href="#日期的表示方式" class="headerlink" title="日期的表示方式"></a>日期的表示方式</h2><p>RFC2822标准</p>
+<p>ISO 8601标准</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认RFC2822标准</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;默认RFC2822标准: &quot;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line"><span class="comment">// ISO 8601 标准</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;ISO 8601标准: &quot;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toISOString</span>());</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTIyDLPlO3zZ0HeO/root/content" alt="content"> </p>
+<h2 id="自定义日期格式"><a href="#自定义日期格式" class="headerlink" title="自定义日期格式"></a>自定义日期格式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> original_date = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="comment">// to 2000/05/11 03:09:34</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dateFormat</span>(<span class="params">date</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> year = date.<span class="title function_">getFullYear</span>();</span><br><span class="line">  <span class="keyword">let</span> month = date.<span class="title function_">getMonth</span>() + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> day = date.<span class="title function_">getDate</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> hours = date.<span class="title function_">getHours</span>();</span><br><span class="line">  <span class="keyword">let</span> minutes = date.<span class="title function_">getMinutes</span>();</span><br><span class="line">  <span class="keyword">let</span> seconds = date.<span class="title function_">getSeconds</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;year&#125;</span>/<span class="subst">$&#123;month&#125;</span>/<span class="subst">$&#123;day&#125;</span> <span class="subst">$&#123;hours&#125;</span>:<span class="subst">$&#123;minutes&#125;</span>:<span class="subst">$&#123;seconds&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dateFormat</span>(original_date)); <span class="comment">// 2023/9/8 15:4:10</span></span><br></pre></td></tr></table></figure>
+
+<p>以上只是一个以当前所学知识封装的一个简单的日期格式化的函数，有两点缺点：</p>
+<ol>
+<li>格式不可变化</li>
+<li>当月&#x2F;日 时分秒的取值为个位数时不显示如04这样的格式，只会显示<code>2023/9/8 15:4:10</code></li>
+</ol>
+<h3 id="高级的日期格式化"><a href="#高级的日期格式化" class="headerlink" title="高级的日期格式化"></a>高级的日期格式化</h3><ol>
+<li>使用第三方库moment.js 日期和时间库</li>
+<li>使用通用性较高的格式化函数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatDateTime</span>(<span class="params">date, format</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> o = &#123;</span><br><span class="line">    <span class="string">&quot;M+&quot;</span>: date.<span class="title function_">getMonth</span>() + <span class="number">1</span>, <span class="comment">// 月份</span></span><br><span class="line">    <span class="string">&quot;d+&quot;</span>: date.<span class="title function_">getDate</span>(), <span class="comment">// 日</span></span><br><span class="line">    <span class="string">&quot;h+&quot;</span>: date.<span class="title function_">getHours</span>() % <span class="number">12</span> === <span class="number">0</span> ? <span class="number">12</span> : date.<span class="title function_">getHours</span>() % <span class="number">12</span>, <span class="comment">// 小时</span></span><br><span class="line">    <span class="string">&quot;H+&quot;</span>: date.<span class="title function_">getHours</span>(), <span class="comment">// 小时</span></span><br><span class="line">    <span class="string">&quot;m+&quot;</span>: date.<span class="title function_">getMinutes</span>(), <span class="comment">// 分</span></span><br><span class="line">    <span class="string">&quot;s+&quot;</span>: date.<span class="title function_">getSeconds</span>(), <span class="comment">// 秒</span></span><br><span class="line">    <span class="string">&quot;q+&quot;</span>: <span class="title class_">Math</span>.<span class="title function_">floor</span>((date.<span class="title function_">getMonth</span>() + <span class="number">3</span>) / <span class="number">3</span>), <span class="comment">// 季度</span></span><br><span class="line">    <span class="attr">S</span>: date.<span class="title function_">getMilliseconds</span>(), <span class="comment">// 毫秒</span></span><br><span class="line">    <span class="attr">a</span>: date.<span class="title function_">getHours</span>() &lt; <span class="number">12</span> ? <span class="string">&quot;上午&quot;</span> : <span class="string">&quot;下午&quot;</span>, <span class="comment">// 上午/下午</span></span><br><span class="line">    <span class="attr">A</span>: date.<span class="title function_">getHours</span>() &lt; <span class="number">12</span> ? <span class="string">&quot;AM&quot;</span> : <span class="string">&quot;PM&quot;</span>, <span class="comment">// AM/PM</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/(y+)/</span>.<span class="title function_">test</span>(format)) &#123;</span><br><span class="line">    format = format.<span class="title function_">replace</span>(<span class="title class_">RegExp</span>.<span class="property">$1</span>, (date.<span class="title function_">getFullYear</span>() + <span class="string">&quot;&quot;</span>).<span class="title function_">substr</span>(<span class="number">4</span> - <span class="title class_">RegExp</span>.<span class="property">$1</span>.<span class="property">length</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> k <span class="keyword">in</span> o) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;(&quot;</span> + k + <span class="string">&quot;)&quot;</span>).<span class="title function_">test</span>(format)) &#123;</span><br><span class="line">      format = format.<span class="title function_">replace</span>(<span class="title class_">RegExp</span>.<span class="property">$1</span>, <span class="title class_">RegExp</span>.<span class="property">$1</span>.<span class="property">length</span> === <span class="number">1</span> ? o[k] : (<span class="string">&quot;00&quot;</span> + o[k]).<span class="title function_">substr</span>((<span class="string">&quot;&quot;</span> + o[k]).<span class="property">length</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> format;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">formatDateTime</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(), <span class="string">&quot;yyyy年MM月dd日 HH:mm:ss&quot;</span>)); <span class="comment">// 2023年09月08日 15:12:54</span></span><br></pre></td></tr></table></figure>
+
+<p>这个函数接受两个参数，第一个参数是要格式化的日期时间，可以是 Date 对象或表示日期时间的字符串，第二个参数是要格式化的格式，例如 &#x3D;&#x3D;yyyy-MM-dd HH:mm:ss&#x3D;&#x3D;。该函数会将日期时间格式化为指定的格式，并返回格式化后的字符串。</p>
+<p>该函数使用了正则表达式来匹配格式字符串中的占位符，然后根据对应的日期时间值来替换占位符。其中，y 会被替换为年份，M、d、h、H、m、s、q、S、a、A 分别表示月份、日期、小时（12 小时制）、小时（24 小时制）、分钟、秒、季度、毫秒、上午&#x2F;下午、AM&#x2F;PM。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">创建日期对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8D%E5%B8%A6%E5%8F%82%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1. 不带参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-number">1.2.</span> <span class="toc-text">2. 时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">3. 字符串 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-new-Date"><span class="toc-number">1.4.</span> <span class="toc-text">4. new Date()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-number">2.</span> <span class="toc-text">访问日期时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-getFullYear"><span class="toc-number">2.1.</span> <span class="toc-text">1.getFullYear()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-getMonth"><span class="toc-number">2.2.</span> <span class="toc-text">2.getMonth()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-getDate"><span class="toc-number">2.3.</span> <span class="toc-text">3.getDate()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-getHours-%EF%BC%8CgetMinutes-%EF%BC%8CgetSeconds-%EF%BC%8CgetMilliseconds-%E8%8E%B7%E5%8F%96%E7%9B%B8%E5%BA%94%E7%9A%84%E6%97%B6%E9%97%B4%E7%BB%84%E4%BB%B6%E3%80%82"><span class="toc-number">2.4.</span> <span class="toc-text">4.getHours()，getMinutes()，getSeconds()，getMilliseconds()获取相应的时间组件。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-getDay"><span class="toc-number">2.5.</span> <span class="toc-text">5.getDay()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-getTime"><span class="toc-number">2.6.</span> <span class="toc-text">6.getTime()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-getTimezoneOffset"><span class="toc-number">2.7.</span> <span class="toc-text">7.getTimezoneOffset()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Date-now"><span class="toc-number">2.8.</span> <span class="toc-text">8.Date.now()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-valueOf"><span class="toc-number">2.9.</span> <span class="toc-text">9.valueOf()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">设置日期时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%A0%A1%E5%87%86"><span class="toc-number">4.</span> <span class="toc-text">自动校准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E5%AD%97"><span class="toc-number">5.</span> <span class="toc-text">日期转换为数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%80%BC"><span class="toc-number">6.</span> <span class="toc-text">日期差值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%97%A5%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%B0%83%E7%94%A8Date-parse"><span class="toc-number">7.</span> <span class="toc-text">对日期字符串调用Date.parse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%97%B6%E9%97%B4"><span class="toc-number">8.</span> <span class="toc-text">关于高精度时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">日期的表示方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F"><span class="toc-number">10.</span> <span class="toc-text">自定义日期格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E7%9A%84%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">10.1.</span> <span class="toc-text">高级的日期格式化</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&text=学习JavaScript的Date对象"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&is_video=false&description=学习JavaScript的Date对象"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript的Date对象&body=Check out this article: https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&title=学习JavaScript的Date对象"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&name=学习JavaScript的Date对象&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/&t=学习JavaScript的Date对象"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

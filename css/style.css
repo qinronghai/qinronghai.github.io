@@ -551,7 +551,7 @@ body {
   }
 }
 .max-width {
-  max-width: 39rem;
+  max-width: 52rem;
 }
 @media (max-width: 480px) {
   .px3 {
@@ -1490,67 +1490,70 @@ article .content .caption {
   content: ")";
 }
 .highlight {
-  background: #474949;
-  color: #d1d9e1;
-}
-.highlight .code .comment,
-.highlight .code .quote {
-  color: #969896;
-  font-style: italic;
+  background: #282b2e;
+  color: #e0e2e4;
 }
 .highlight .code .keyword,
 .highlight .code .selector-tag,
 .highlight .code .literal,
-.highlight .code .type,
-.highlight .code .addition {
-  color: #c9c;
+.highlight .code .selector-id {
+  color: #93c763;
 }
-.highlight .code .number,
+.highlight .code .number {
+  color: #ffcd22;
+}
+.highlight .code .attribute {
+  color: #668bb0;
+}
+.highlight .code .code,
+.highlight .code .class .title,
+.highlight .code .section {
+  color: #fff;
+}
+.highlight .code .regexp,
+.highlight .code .link {
+  color: #d39745;
+}
+.highlight .code .meta {
+  color: #557182;
+}
+.highlight .code .tag,
+.highlight .code .name,
+.highlight .code .bullet,
+.highlight .code .subst,
+.highlight .code .emphasis,
+.highlight .code .type,
+.highlight .code .built_in,
 .highlight .code .selector-attr,
-.highlight .code .selector-pseudo {
-  color: #f99157;
+.highlight .code .selector-pseudo,
+.highlight .code .addition,
+.highlight .code .variable,
+.highlight .code .template-tag,
+.highlight .code .template-variable {
+  color: #8cbbad;
 }
 .highlight .code .string,
+.highlight .code .symbol {
+  color: #ec7600;
+}
+.highlight .code .comment,
+.highlight .code .quote,
+.highlight .code .deletion {
+  color: #818e96;
+}
+.highlight .code .selector-class {
+  color: #a082bd;
+}
+.highlight .code .keyword,
+.highlight .code .selector-tag,
+.highlight .code .literal,
 .highlight .code .doctag,
-.highlight .code .regexp {
-  color: #8abeb7;
-}
 .highlight .code .title,
-.highlight .code .name,
 .highlight .code .section,
-.highlight .code .built_in {
-  color: #b5bd68;
-}
-.highlight .code .variable,
-.highlight .code .template-variable,
-.highlight .code .selector-id,
-.highlight .code .class .title {
-  color: #fc6;
-}
-.highlight .code .section,
+.highlight .code .type,
 .highlight .code .name,
 .highlight .code .strong {
   font-weight: bold;
-}
-.highlight .code .symbol,
-.highlight .code .bullet,
-.highlight .code .subst,
-.highlight .code .meta,
-.highlight .code .link {
-  color: #f99157;
-}
-.highlight .code .deletion {
-  color: #dc322f;
-}
-.highlight .code .formula {
-  background: #eee8d5;
-}
-.highlight .code .attr,
-.highlight .code .attribute {
-  color: #81a2be;
-}
-.highlight .code .emphasis {
-  font-style: italic;
 }
 pre {
   overflow-x: auto;
