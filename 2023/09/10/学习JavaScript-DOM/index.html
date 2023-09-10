@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="DOM的理解DOM指的是 Document Object Model(文档对象模型), 它是JavaScript和网页的桥梁, 能够使JavaScript操作网页中的元素。 DOM将页面中所有的内容都抽象为一个个可以修改的对象，这个抽象过程称之为文档对象模型。 比如说：  整个文档-被抽象到 document 对象中 html元素-被抽象到 document.documentElement hea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript-DOM">
+<meta property="og:url" content="https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="DOM的理解DOM指的是 Document Object Model(文档对象模型), 它是JavaScript和网页的桥梁, 能够使JavaScript操作网页中的元素。 DOM将页面中所有的内容都抽象为一个个可以修改的对象，这个抽象过程称之为文档对象模型。 比如说：  整个文档-被抽象到 document 对象中 html元素-被抽象到 document.documentElement hea">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTPJA5l2mvfTqBJ2/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgT6od39lH-pfAgPO/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgT-ghMCKGWa01ZIq/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUDIrblc4YtOt3sO/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUEguqhSGsZobB_Z/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUI8kgs6O2wGJ0j5/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUOTcb5T6cj4dG55/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUTg_zhEP81Eh2g6/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUVFA2WlVkbToDWd/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUZWXbNIpw0XqMM1/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUfKD09f-G06NnBa/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTXMJCBEBoGHoAQ9/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUlimg4Ky5TcFkQ1/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTYIm9iyEKpmlufT/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUrNpeeA5ffdGtvV/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTeXNtQ1bmHCgqo3/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTiV02nEDwh0G5PX/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTk_3O2v_9nrE-Sz/root/content">
+<meta property="article:published_time" content="2023-09-10T15:47:12.000Z">
+<meta property="article:modified_time" content="2023-09-10T15:51:31.479Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTPJA5l2mvfTqBJ2/root/content">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>学习JavaScript-DOM</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/09/08/%E5%AD%A6%E4%B9%A0JavaScript%E7%9A%84Date%E5%AF%B9%E8%B1%A1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&text=学习JavaScript-DOM"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&is_video=false&description=学习JavaScript-DOM"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-DOM&body=Check out this article: https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&name=学习JavaScript-DOM&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&t=学习JavaScript-DOM"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">DOM的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM-Tree%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">DOM Tree的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E7%9A%84%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">DOM的继承关系图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">document对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9-Node-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%BC%E8%88%AA-navigator"><span class="toc-number">5.</span> <span class="toc-text">节点(Node)之间的导航(navigator)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0-Element-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%BC%E8%88%AA-navigator"><span class="toc-number">6.</span> <span class="toc-text">元素(Element)之间的导航(navigator)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BB%BB%E6%84%8F%E5%85%83%E7%B4%A0%E5%AF%B9%E8%B1%A1"><span class="toc-number">7.</span> <span class="toc-text">获取任意元素对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9Node%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text">节点Node常见属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84Attribute"><span class="toc-number">9.</span> <span class="toc-text">Element元素的Attribute</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#attribute%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">9.1.</span> <span class="toc-text">attribute的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attribute%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">9.2.</span> <span class="toc-text">attribute的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84Property"><span class="toc-number">10.</span> <span class="toc-text">Element元素的Property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84Class-x2F-Style"><span class="toc-number">11.</span> <span class="toc-text">Element元素的Class&#x2F;Style</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9Class"><span class="toc-number">11.1.</span> <span class="toc-text">JavaScript动态修改Class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassName"><span class="toc-number">11.1.1.</span> <span class="toc-text">ClassName</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#classList%E5%AF%B9%E8%B1%A1"><span class="toc-number">11.1.2.</span> <span class="toc-text">classList对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E7%9A%84Style%E5%B1%9E%E6%80%A7"><span class="toc-number">11.2.</span> <span class="toc-text">元素的Style属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84datset"><span class="toc-number">12.</span> <span class="toc-text">Element元素的datset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-x2F-%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0"><span class="toc-number">13.</span> <span class="toc-text">创建&#x2F;插入元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4-x2F-%E5%85%8B%E9%9A%86%E8%8A%82%E7%82%B9"><span class="toc-number">14.</span> <span class="toc-text">移除&#x2F;克隆节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E7%9A%84%E5%A4%A7%E5%B0%8F-%E4%BD%8D%E7%BD%AE-%E6%BB%9A%E5%8A%A8"><span class="toc-number">15.</span> <span class="toc-text">获取元素的大小-位置-滚动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%AA%97%E5%8F%A3%E7%9A%84%E5%A4%A7%E5%B0%8F-%E4%BD%8D%E7%BD%AE-%E6%96%B9%E6%B3%95"><span class="toc-number">16.</span> <span class="toc-text">获取窗口的大小-位置-方法</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        学习JavaScript-DOM
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-10T15:47:12.000Z" itemprop="datePublished">2023-09-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-link-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="DOM的理解"><a href="#DOM的理解" class="headerlink" title="DOM的理解"></a>DOM的理解</h2><p>DOM指的是 Document Object Model(文档对象模型), 它是JavaScript和网页的桥梁, 能够使JavaScript操作网页中的元素。</p>
+<p>DOM将页面中所有的内容都抽象为一个个可以修改的对象，这个抽象过程称之为文档对象模型。</p>
+<p>比如说：</p>
+<ol>
+<li>整个文档-被抽象到 <code>document </code>对象中</li>
+<li>html元素-被抽象到 <code>document.documentElement</code></li>
+<li>head元素-被抽象到 <code>document.head</code></li>
+</ol>
+<h2 id="DOM-Tree的理解"><a href="#DOM-Tree的理解" class="headerlink" title="DOM Tree的理解"></a>DOM Tree的理解</h2><p>在页面结构中，最终会形成一个 树结构</p>
+<p>当 html tree 抽象成DOM对象时，就形成了DOM Tree</p>
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTPJA5l2mvfTqBJ2/root/content" alt="content"> </p>
+<h2 id="DOM的继承关系图"><a href="#DOM的继承关系图" class="headerlink" title="DOM的继承关系图"></a>DOM的继承关系图</h2><p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgT6od39lH-pfAgPO/root/content" alt="content"> </p>
+<h2 id="document对象"><a href="#document对象" class="headerlink" title="document对象"></a>document对象</h2><p>Document节点表示的整个载入的网页，它的实例是全局的document对象</p>
+<p>对DOM的操作都是从document对象开始的</p>
+<p>它是DOM的 入口点，可以从document开始去访问任何节点元素</p>
+<h2 id="节点-Node-之间的导航-navigator"><a href="#节点-Node-之间的导航-navigator" class="headerlink" title="节点(Node)之间的导航(navigator)"></a>节点(Node)之间的导航(navigator)</h2><p>获取到一个节点 Node 之后，可以根据这个节点获取其他的节点，这就称为节点之间的导航。</p>
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgT-ghMCKGWa01ZIq/root/content" alt="content"> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 注释 --&gt;</span></span><br><span class="line">    文本哈哈哈哈</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>我是span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      你好</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> bodyEl = <span class="variable language_">document</span>.<span class="property">body</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(bodyEl);</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 1. childrens</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(bodyEl.<span class="property">childNodes</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 2. firstChild</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(bodyEl.<span class="property">firstChild</span>); <span class="comment">// 这是换行</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 3. 找同兄弟</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> divEl = bodyEl.<span class="property">childNodes</span>[<span class="number">3</span>];</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(divEl);</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(divEl.<span class="property">nextSibling</span>.<span class="property">nextSibling</span>); <span class="comment">// div的下一个兄弟是换行+空行，再下一个才是ul元素</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 3. 找父节点</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(bodyEl.<span class="property">parentNode</span>);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUDIrblc4YtOt3sO/root/content" alt="content"> </p>
+<h2 id="元素-Element-之间的导航-navigator"><a href="#元素-Element-之间的导航-navigator" class="headerlink" title="元素(Element)之间的导航(navigator)"></a>元素(Element)之间的导航(navigator)</h2><p>当我们知道Node之间的导航获取的是全部的节点后, 我们发现获取到很多的换行符, 注释等一些在开发中并不需要获取的节点 </p>
+<p>在开发中我们更关心的是获取 元素, 所以这就需要用到元素之间的导航</p>
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUEguqhSGsZobB_Z/root/content" alt="content"> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取body的所有子元素</span></span><br><span class="line"><span class="keyword">var</span> body = <span class="variable language_">document</span>.<span class="property">body</span>;</span><br><span class="line"><span class="keyword">var</span> bodyChildrens = body.<span class="property">children</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bodyChildrens);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取 div</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bodyChildrens[<span class="number">0</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(body.<span class="property">firstElementChild</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取 ul 和 li</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(body.<span class="property">firstElementChild</span>.<span class="property">nextElementSibling</span>); <span class="comment">// div的下一个兄弟</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(body.<span class="property">firstElementChild</span>.<span class="property">nextElementSibling</span>.<span class="property">children</span>); <span class="comment">// ul下的所有li</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUI8kgs6O2wGJ0j5/root/content" alt="content">  </p>
+<h2 id="获取任意元素对象"><a href="#获取任意元素对象" class="headerlink" title="获取任意元素对象"></a>获取任意元素对象</h2><p>前面的 导航法 获取元素是有一些弊端的, 当页面结构很复杂时, 需要很多的操作才能拿到想要的元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;keyword&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 获取body</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> bodyEl = <span class="variable language_">document</span>.<span class="property">body</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 获取div</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> firstDivEl = bodyEl.<span class="property">firstElementChild</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 获取content div</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> contentEl = firstDivEl.<span class="property">children</span>[<span class="number">2</span>];</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 获取keyword span</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(contentEl.<span class="property">firstElementChild</span>);</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如上面代码所示, 是需要很多步骤的, 以下是获取任意元素的方法:</p>
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUOTcb5T6cj4dG55/root/content" alt="content"> </p>
+<ol>
+<li>在元素上调用指的是, 先获取了某个元素, 在此元素基础上调用方法, 而不是必须通过document对象调用</li>
+<li>实时 指的是如原本对象中有两个div元素, 当你通过js再添加一个div时, 上面的两个方法是不能获取到新增的div元素的</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// querySelector</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.keyword&quot;</span>)); <span class="comment">// 返回第一个类名为keyword的元素</span></span><br><span class="line"><span class="comment">// querySelectorAll</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bodyEl.<span class="title function_">querySelectorAll</span>(<span class="string">&quot;div&quot;</span>)); <span class="comment">// 返回所有类名为div的元素, 这是在body元素上调用的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// getElementByClassName</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&quot;keyword&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUTg_zhEP81Eh2g6/root/content" alt="content"> </p>
+<h2 id="节点Node常见属性"><a href="#节点Node常见属性" class="headerlink" title="节点Node常见属性"></a>节点Node常见属性</h2><p>nodeType属性: 返回节点类型的数值</p>
+<p>nodeName属性: 返回节点的名称</p>
+<p>tagName属性: 只返回元素的名称</p>
+<p>data&#x2F;nodeValue属性: 针对非元素的节点获取文本内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bodyChildrens = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">childNodes</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> node <span class="keyword">of</span> bodyChildrens) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;nodeType属性-&quot;</span> + node.<span class="property">nodeType</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;--------------------------------&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> node <span class="keyword">of</span> bodyChildrens) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;nodeName属性-&quot;</span> + node.<span class="property">nodeName</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;--------------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> node <span class="keyword">of</span> bodyChildrens) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;tagName属性-&quot;</span> + node.<span class="property">tagName</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;--------------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> node <span class="keyword">of</span> bodyChildrens) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;data属性-&quot;</span> + node.<span class="property">data</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUVFA2WlVkbToDWd/root/content" alt="content"> </p>
+<p>innerHTML: 将元素中HTML获取为字符串形式</p>
+<p>outerHTML: 包含了元素完整的HTML</p>
+<p>textContent: 仅仅获取元素中的文本内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><br><span class="line">  我是div</span><br><span class="line">  &lt;h2&gt;标题&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">innerHTML</span>); <span class="comment">// 整个标签拿下来</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">textContent</span>); <span class="comment">// 拿里面的文本内容</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUZWXbNIpw0XqMM1/root/content" alt="content"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">innerHTML</span> = <span class="string">&quot;&lt;h3&gt;我是h3&lt;/h3&gt;&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">innerHTML</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">textContent</span> = <span class="string">&quot;我啥也不是&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">textContent</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">textContent</span> = <span class="string">&quot;&lt;h2&gt;我啥也不是&lt;/h2&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>).<span class="property">outerHTML</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUfKD09f-G06NnBa/root/content" alt="content"> </p>
+<h2 id="Element元素的Attribute"><a href="#Element元素的Attribute" class="headerlink" title="Element元素的Attribute"></a>Element元素的Attribute</h2><h3 id="attribute的分类"><a href="#attribute的分类" class="headerlink" title="attribute的分类"></a>attribute的分类</h3><ol>
+<li>标准的attribute: 如id, class, href, type, value等</li>
+<li>非标准的attribute: 自定义的attribute属性, 如abc, age等</li>
+</ol>
+<h3 id="attribute的操作"><a href="#attribute的操作" class="headerlink" title="attribute的操作"></a>attribute的操作</h3><p>对于所有的attribute都支持如下操作:</p>
+<p>el.hasAttribute(name) - 检查attribute是否存在</p>
+<p>el.getAttribute(name) - 获取这个attribute的值</p>
+<p>el.setAttribute(name, value) - 设置这个特性值</p>
+<p>el.removeAttribute(name) - 移除这个特性</p>
+<p>attributes: attr对象的集合, 具有name和value属性</p>
+<p>attribute的特性:</p>
+<ol>
+<li>名字是<strong>大小写不敏感</strong>的(class和CLASS相同)</li>
+<li>它们的<strong>值总是字符串类型</strong></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">id</span>=<span class="string">&quot;abc&quot;</span> <span class="attr">title</span>=<span class="string">&quot;hhh&quot;</span> <span class="attr">age</span>=<span class="string">&quot;18&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1.90&quot;</span>&gt;</span>哈哈哈哈<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> <span class="attr">checked</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> boxEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(boxEl.<span class="title function_">hasAttribute</span>(<span class="string">&quot;title&quot;</span>));</span></span><br><span class="line"><span class="language-javascript">    boxEl.<span class="title function_">setAttribute</span>(<span class="string">&quot;title&quot;</span>, <span class="string">&quot;newTitle&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    boxEl.<span class="title function_">removeAttribute</span>(<span class="string">&quot;id&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> boxAttributes = boxEl.<span class="property">attributes</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">const</span> attr <span class="keyword">of</span> boxAttributes) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(attr.<span class="property">name</span>, attr.<span class="property">value</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> inputEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;input&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//它们的值总是字符串类型, input中的checkd没有值所以显示是空的</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inputEl.<span class="title function_">getAttribute</span>(<span class="string">&quot;checked&quot;</span>));</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTXMJCBEBoGHoAQ9/root/content" alt="content"> </p>
+<h2 id="Element元素的Property"><a href="#Element元素的Property" class="headerlink" title="Element元素的Property"></a>Element元素的Property</h2><p>对象中的属性称之为property, 元素中的属性称之为attribute</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;&quot;</span> id=<span class="string">&quot;&quot;</span> checked /&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;abc&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p> 标准的Attribute在对应的对象模型中都有对应的property</p>
+<p>非标准的Attribute只能通过attribute操作获取对应的property</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过对象的property获取input元素中checked为空的值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inputEl.<span class="property">checked</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Element元素的Class-x2F-Style"><a href="#Element元素的Class-x2F-Style" class="headerlink" title="Element元素的Class&#x2F;Style"></a>Element元素的Class&#x2F;Style</h2><h3 id="JavaScript动态修改Class"><a href="#JavaScript动态修改Class" class="headerlink" title="JavaScript动态修改Class"></a>JavaScript动态修改Class</h3><h4 id="ClassName"><a href="#ClassName" class="headerlink" title="ClassName"></a>ClassName</h4><p>会将给定的class类名<strong>覆盖</strong>掉原来的class类名</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var boxEl = document.querySelector(&quot;.box&quot;);</span><br><span class="line"></span><br><span class="line">boxEl.className = &quot;active&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUlimg4Ky5TcFkQ1/root/content" alt="content"> </p>
+<h4 id="classList对象"><a href="#classList对象" class="headerlink" title="classList对象"></a>classList对象</h4><ol>
+<li>el.classList.<strong>add</strong>(token1[, token2[, …tokenN]]) : 添加类</li>
+<li>el.classList.<strong>remove</strong>((token1[, token2[, …]])): 移除类</li>
+<li>el.classList.<strong>replace</strong>(oldToken, newToken):已存在的 token 替换为一个新 token, 如果第一个参数 token 在列表中不存在， replace() 立刻返回false ，而不会将新 token 字符串添加到列表中。</li>
+<li>el.classList.<strong>toggle</strong>(class):如果类不存在就添加类, 存在就移除它</li>
+<li>el.classList.<strong>contains</strong>(class):检查给定类, 返回true&#x2F;false</li>
+</ol>
+<h3 id="元素的Style属性"><a href="#元素的Style属性" class="headerlink" title="元素的Style属性"></a>元素的Style属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>哈哈哈哈哈<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> boxEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    boxEl.<span class="property">style</span>.<span class="property">color</span> = <span class="string">&quot;red&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    boxEl.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">&quot;green&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    boxEl.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&quot;&quot;</span>; <span class="comment">// 空字符串, 浏览器会给到默认值</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 设置多个样式, 但是会覆盖掉原来的</span></span></span><br><span class="line"><span class="language-javascript">    boxEl.<span class="property">style</span>.<span class="property">cssText</span> = <span class="string">&quot;padding: 10px; font-size: 30px;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">/* 读取style</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    style内联样式是可以通过style属性读取到的,</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    但是对于style标签和css文件中的样式,是读取不到的  */</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getComputedStyle</span>(boxEl)); <span class="comment">// 获取计算后的样式</span></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTYIm9iyEKpmlufT/root/content" alt="content"> </p>
+<h2 id="Element元素的datset"><a href="#Element元素的datset" class="headerlink" title="Element元素的datset"></a>Element元素的datset</h2><p>前面的自定义属性age, height的获取只能通过getAttribute()的方式获取, 因为它们是非标准的Attribute</p>
+<p>在开发中, 自定义属性通常被放到data-后, 通过el.dataset获取</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">id</span>=<span class="string">&quot;abc&quot;</span> <span class="attr">title</span>=<span class="string">&quot;hhh&quot;</span> <span class="attr">data-age</span>=<span class="string">&quot;18&quot;</span> <span class="attr">data-height</span>=<span class="string">&quot;1.90&quot;</span>&gt;</span>哈哈哈哈<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> boxEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(boxEl.<span class="property">dataset</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgUrNpeeA5ffdGtvV/root/content" alt="content"></p>
+<h2 id="创建-x2F-插入元素"><a href="#创建-x2F-插入元素" class="headerlink" title="创建&#x2F;插入元素"></a>创建&#x2F;插入元素</h2><p>document.createElement(tag)</p>
+<p>document.body.append(div) ：此系列插入如<code>&lt;p&gt;哈哈哈哈哈&lt;/p&gt;</code>的是文本，如同textContent</p>
+<p>elem.insertAdjacentHTML(where, html)  ：此系列插入如<code>&lt;p&gt;哈哈哈哈哈&lt;/p&gt;</code>是html，如同innerHtml</p>
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTeXNtQ1bmHCgqo3/root/content" alt="content"> </p>
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTiV02nEDwh0G5PX/root/content" alt="content"> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    你好</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>哈哈哈哈哈<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;strong&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 创建一个元素</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> h2El = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;h2&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 设置元素的相关属性</span></span></span><br><span class="line"><span class="language-javascript">    h2El.<span class="property">className</span> = <span class="string">&quot;title&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 为元素填充文本信息</span></span></span><br><span class="line"><span class="language-javascript">    h2El.<span class="property">innerHTML</span> = <span class="string">&quot;hi nihao lili&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 插入元素</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">prepend</span>(h2El);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span.strong&quot;</span>).<span class="title function_">insertAdjacentHTML</span>(<span class="string">&quot;afterbegin&quot;</span>, <span class="string">&quot;&lt;p&gt;niu bi&lt;/p&gt;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTk_3O2v_9nrE-Sz/root/content" alt="content"> </p>
+<h2 id="移除-x2F-克隆节点"><a href="#移除-x2F-克隆节点" class="headerlink" title="移除&#x2F;克隆节点"></a>移除&#x2F;克隆节点</h2><p>node.remove()</p>
+<p>elem.cloneNode(true) 深克隆：包含所有属性和子元素</p>
+<p>elem.cloneNode(false) ：不包含子元素</p>
+<h2 id="获取元素的大小-位置-滚动"><a href="#获取元素的大小-位置-滚动" class="headerlink" title="获取元素的大小-位置-滚动"></a>获取元素的大小-位置-滚动</h2><h2 id="获取窗口的大小-位置-方法"><a href="#获取窗口的大小-位置-方法" class="headerlink" title="获取窗口的大小-位置-方法"></a>获取窗口的大小-位置-方法</h2><p><a target="_blank" rel="noopener" href="https://zh.javascript.info/size-and-scroll-window">https://zh.javascript.info/size-and-scroll-window</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    。。。。。。</span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;toTop&quot;</span>&gt;</span>回到顶部<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 获取网页窗口的宽度和高度（包含滚动条）</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">innerHeight</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">innerWidth</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 获取浏览器整个窗口的宽高（包含工具栏，调试工具界面）</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">outerHeight</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">outerWidth</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 获取滚动条的位置</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">scrollX</span>);</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">scrollY</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 滚动方法</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 1. 相对于当前位置滚动</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// window.scrollBy(10, 10);</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 2. 滚动到绝对位置</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// window.scrollTo(100, 100);</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> btnEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.toTop&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      btnEl.<span class="property">hidden</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="property">onscroll</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">scrollY</span> &gt; <span class="number">600</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          btnEl.<span class="property">hidden</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          btnEl.<span class="property">hidden</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      btnEl.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="title function_">scrollTo</span>(<span class="number">0</span>, <span class="number">0</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">DOM的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM-Tree%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">DOM Tree的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E7%9A%84%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">DOM的继承关系图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">document对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9-Node-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%BC%E8%88%AA-navigator"><span class="toc-number">5.</span> <span class="toc-text">节点(Node)之间的导航(navigator)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0-Element-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%BC%E8%88%AA-navigator"><span class="toc-number">6.</span> <span class="toc-text">元素(Element)之间的导航(navigator)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BB%BB%E6%84%8F%E5%85%83%E7%B4%A0%E5%AF%B9%E8%B1%A1"><span class="toc-number">7.</span> <span class="toc-text">获取任意元素对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9Node%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text">节点Node常见属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84Attribute"><span class="toc-number">9.</span> <span class="toc-text">Element元素的Attribute</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#attribute%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">9.1.</span> <span class="toc-text">attribute的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attribute%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">9.2.</span> <span class="toc-text">attribute的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84Property"><span class="toc-number">10.</span> <span class="toc-text">Element元素的Property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84Class-x2F-Style"><span class="toc-number">11.</span> <span class="toc-text">Element元素的Class&#x2F;Style</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9Class"><span class="toc-number">11.1.</span> <span class="toc-text">JavaScript动态修改Class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassName"><span class="toc-number">11.1.1.</span> <span class="toc-text">ClassName</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#classList%E5%AF%B9%E8%B1%A1"><span class="toc-number">11.1.2.</span> <span class="toc-text">classList对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E7%9A%84Style%E5%B1%9E%E6%80%A7"><span class="toc-number">11.2.</span> <span class="toc-text">元素的Style属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Element%E5%85%83%E7%B4%A0%E7%9A%84datset"><span class="toc-number">12.</span> <span class="toc-text">Element元素的datset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-x2F-%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0"><span class="toc-number">13.</span> <span class="toc-text">创建&#x2F;插入元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4-x2F-%E5%85%8B%E9%9A%86%E8%8A%82%E7%82%B9"><span class="toc-number">14.</span> <span class="toc-text">移除&#x2F;克隆节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E7%9A%84%E5%A4%A7%E5%B0%8F-%E4%BD%8D%E7%BD%AE-%E6%BB%9A%E5%8A%A8"><span class="toc-number">15.</span> <span class="toc-text">获取元素的大小-位置-滚动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%AA%97%E5%8F%A3%E7%9A%84%E5%A4%A7%E5%B0%8F-%E4%BD%8D%E7%BD%AE-%E6%96%B9%E6%B3%95"><span class="toc-number">16.</span> <span class="toc-text">获取窗口的大小-位置-方法</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&text=学习JavaScript-DOM"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&is_video=false&description=学习JavaScript-DOM"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript-DOM&body=Check out this article: https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&title=学习JavaScript-DOM"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&name=学习JavaScript-DOM&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/&t=学习JavaScript-DOM"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
