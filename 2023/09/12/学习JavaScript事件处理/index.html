@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="事件流当对一个元素点击时，你点击的不仅仅是这个元素本身。 因为HTML元素是存在父子元素叠加层级的。 例如下面的结构逻辑及效果： 123&lt;div class&#x3D;&quot;box&quot;&gt;  &lt;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;div&gt;  默认情况下，事件流的传递过程是 从内往外传递，这称之为 “事件冒泡”。 还有一种方式是“事件捕获”，传递过程是 从外">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript事件处理">
+<meta property="og:url" content="https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="AHAI">
+<meta property="og:description" content="事件流当对一个元素点击时，你点击的不仅仅是这个元素本身。 因为HTML元素是存在父子元素叠加层级的。 例如下面的结构逻辑及效果： 123&lt;div class&#x3D;&quot;box&quot;&gt;  &lt;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;div&gt;  默认情况下，事件流的传递过程是 从内往外传递，这称之为 “事件冒泡”。 还有一种方式是“事件捕获”，传递过程是 从外">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTpV0UMGs5_czdbJ/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTs-klwfsCDKGe6L/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTxovWMcKh6OzpMz/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgT0iQYEErk89DUGz/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVbV8jJIIXBgB_fe/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgU89UyTQr-bFapu_/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVAVrxy_DZvZ2Ra9/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVGFt4Wv3ZcrtEVi/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVLOGyH6raV0IMR6/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVMxUQlEXX-zO4pa/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVSxL9rSsBFVn-p8/root/content">
+<meta property="og:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVVVXmQaWjnDQxgm/root/content">
+<meta property="article:published_time" content="2023-09-11T17:34:36.000Z">
+<meta property="article:modified_time" content="2023-09-11T17:35:45.101Z">
+<meta property="article:author" content="AHAI">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTpV0UMGs5_czdbJ/root/content">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>学习JavaScript事件处理</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="AHAI" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/09/10/%E5%AD%A6%E4%B9%A0JavaScript-DOM/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&text=学习JavaScript事件处理"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&is_video=false&description=学习JavaScript事件处理"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript事件处理&body=Check out this article: https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&name=学习JavaScript事件处理&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&t=学习JavaScript事件处理"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">事件流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">事件对象解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E6%AD%A2%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="toc-number">3.</span> <span class="toc-text">阻止默认行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92"><span class="toc-number">4.</span> <span class="toc-text">阻止事件传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%B8%AD%E7%9A%84this"><span class="toc-number">5.</span> <span class="toc-text">事件处理函数中的this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EventTarget%E7%B1%BB"><span class="toc-number">6.</span> <span class="toc-text">EventTarget类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98"><span class="toc-number">7.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6"><span class="toc-number">8.</span> <span class="toc-text">常见的鼠标事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mouseenter%E5%92%8Cmouseover%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.1.</span> <span class="toc-text">mouseenter和mouseover的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mouseenter%E5%92%8Cmouseover%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">8.2.</span> <span class="toc-text">mouseenter和mouseover的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text">常见的键盘事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6"><span class="toc-number">10.</span> <span class="toc-text">常见的表单事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E5%8A%A0%E8%BD%BD%E7%9B%91%E5%90%AC"><span class="toc-number">11.</span> <span class="toc-text">文档加载监听</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window%E5%AE%9A%E6%97%B6%E5%99%A8%E6%96%B9%E6%B3%95"><span class="toc-number">12.</span> <span class="toc-text">window定时器方法</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        学习JavaScript事件处理
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">AHAI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-11T17:34:36.000Z" itemprop="datePublished">2023-09-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>当对一个元素点击时，你点击的不仅仅是这个元素本身。</p>
+<p>因为HTML元素是存在父子元素叠加层级的。</p>
+<p>例如下面的结构逻辑及效果：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，事件流的传递过程是 从内往外传递，这称之为 “事件冒泡”。</p>
+<p>还有一种方式是“事件捕获”，传递过程是 从外往里</p>
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTpV0UMGs5_czdbJ/root/content" alt="content">  </p>
+<br/>
+
+<br/>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTs-klwfsCDKGe6L/root/content" alt="content"> </p>
+<p>如果都监听，那么就会先捕获，再冒泡，会按照下面的顺序进行执行：</p>
+<ol>
+<li>捕获阶段：事件从window向下走近目标元素</li>
+<li>目标阶段：时间到达目标元素</li>
+<li>冒泡阶段：时间从目标元素向上冒泡</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bodyEl = <span class="variable language_">document</span>.<span class="property">body</span>;</span><br><span class="line"><span class="keyword">var</span> divEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> spanEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="comment">// 捕获阶段</span></span><br><span class="line">bodyEl.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;body元素被点击了~&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line">divEl.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;div元素被点击了~&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line">spanEl.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span元素被点击了~&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认冒泡阶段</span></span><br><span class="line">bodyEl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;body元素被点击了~&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">divEl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;div元素被点击了~&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">spanEl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span元素被点击了~&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgTxovWMcKh6OzpMz/root/content" alt="content"> </p>
+<br/>
+
+<h2 id="事件对象解析"><a href="#事件对象解析" class="headerlink" title="事件对象解析"></a>事件对象解析</h2><p>为什么需要这个事件对象？因为需要将一些信息放在对象中给开发者使用。</p>
+<p>又因为捕获和冒泡的影响，当点击目标元素时，外层元素也会触发事件，所以外层元素不知道是不是点击了自身触发的事件，这些信息可以在event对象中找到。</p>
+<p>event对象由浏览器创建，当监听事件触发调用传入的函数时，浏览器会自动将event对象作为参数传入事件调用的函数。</p>
+<p>event对象中有哪些属性：</p>
+<ol>
+<li>type：事件类型</li>
+<li>target：当前<strong>事件发生</strong>的元素</li>
+<li>currentTarget：当前处理事件的元素</li>
+<li>eventPhase：事件所处的阶段</li>
+<li>offsetX、offsetY：事件发生在元素内的位置</li>
+<li>clientX、clientY：时间发生在客户端内的位置</li>
+</ol>
+<p>注意target和currentTarget的区别</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">divEl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;div元素被点击了~&quot;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">target</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">currentTarget</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">target</span> === event.<span class="property">currentTarget</span>);</span><br><span class="line">&#125;);</span><br><span class="line">spanEl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span元素被点击了~&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgT0iQYEErk89DUGz/root/content" alt="content"> </p>
+<h2 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h2><p>众所周知，a元素点击后或发生默认行为，会自动跳转到相应的网址。</p>
+<p>可以使用event.preventDefault()方法进行阻止。</p>
+<h2 id="阻止事件传递"><a href="#阻止事件传递" class="headerlink" title="阻止事件传递"></a>阻止事件传递</h2><p>event.stopPropagation()</p>
+<h2 id="事件处理函数中的this"><a href="#事件处理函数中的this" class="headerlink" title="事件处理函数中的this"></a>事件处理函数中的this</h2><p>这里的this指向绑定了事件的元素 </p>
+<h2 id="EventTarget类"><a href="#EventTarget类" class="headerlink" title="EventTarget类"></a>EventTarget类</h2><p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVbV8jJIIXBgB_fe/root/content" alt="content"> </p>
+<p>所有的节点、元素都继承自EventTarget，window也是一样</p>
+<p>EventTarget是一个DOM接口，主要用于添加、删除、派发Event事件</p>
+<p>EventTarget常见的方法：</p>
+<ol>
+<li>addEventListener： 注册某个事件类型以及事件处理函数；</li>
+<li>removeEventListener：移除某个事件类型以及事件处理函数</li>
+<li>dispatchEvent：派发某个事件类型到EventTarget上；</li>
+</ol>
+<h2 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h2><p> 事件冒泡在某种情况下可以帮助我们实现强大的事件处理模式- 事件委托模式-是一种设计模式</p>
+<p>当子元素被点击时，父元素可以通过冒泡可以监听到子元素的点击；并且可以通过event.target获取到当前监听的元素；</p>
+<p>案例：一个ul中存放多个li，点击某一个li会变成红色</p>
+<p>事件委托：在ul中监听点击，并且通过event.target拿到相应的li进行处理</p>
+<p>此方法不需要再每一个li上添加事件监听，所以更高效，具备一定性能提升。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.active</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#f00</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> ulEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;ul&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> activeEl = <span class="literal">null</span>; <span class="comment">// 使用变量记住当前.active的元素</span></span></span><br><span class="line"><span class="language-javascript">      ulEl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (activeEl) &#123;</span></span><br><span class="line"><span class="language-javascript">          activeEl.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&quot;active&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        e.<span class="property">target</span>.<span class="property">classList</span>.<span class="title function_">toggle</span>(<span class="string">&quot;active&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        activeEl = e.<span class="property">target</span>;</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgU89UyTQr-bFapu_/root/content" alt="content"> </p>
+<h2 id="常见的鼠标事件"><a href="#常见的鼠标事件" class="headerlink" title="常见的鼠标事件"></a>常见的鼠标事件</h2><p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVAVrxy_DZvZ2Ra9/root/content" alt="content">  </p>
+<h3 id="mouseenter和mouseover的区别"><a href="#mouseenter和mouseover的区别" class="headerlink" title="mouseenter和mouseover的区别"></a>mouseenter和mouseover的区别</h3><ol>
+<li>mouseenter：不支持冒泡，进入子元素依然属于该元素内，没有任何反应</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// mouseenter and mouseleave</span></span><br><span class="line">boxEl.<span class="property">onmouseenter</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;box mouseenter&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">boxEl.<span class="property">onmouseleave</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;box mouseleave&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">spanEl.<span class="property">onmouseenter</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span mouseenter&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">spanEl.<span class="property">onmouseleave</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span mouseleave&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVGFt4Wv3ZcrtEVi/root/content" alt="content"> </p>
+<br/>
+
+<ol start="2">
+<li>mouseover：支持冒泡<ol>
+<li>先调用父元素 mouseout</li>
+<li>再调用子元素mouseover</li>
+<li>因为支持冒泡，所以会将mouseover传递到父元素中</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mouseover and mouseout</span></span><br><span class="line">boxEl.<span class="property">onmouseover</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;box mouseover&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">boxEl.<span class="property">onmouseout</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;box mouseout&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">spanEl.<span class="property">onmouseover</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span mouseover&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">spanEl.<span class="property">onmouseout</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;span mouseout&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVLOGyH6raV0IMR6/root/content" alt="content"> </p>
+<h3 id="mouseenter和mouseover的应用"><a href="#mouseenter和mouseover的应用" class="headerlink" title="mouseenter和mouseover的应用"></a>mouseenter和mouseover的应用</h3><p> mouseenter不支持冒泡，所以无法使用事件委托。</p>
+<p>mouseover支持冒泡，可以使用事件委托。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">button</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">50px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span>&gt;</span>查询<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// mouseenter 只能绑定到每一个button中实现打印button中的文字</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// mouseover 可以实现事件委托给父元素box</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> boxEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      boxEl.<span class="property">onmouseover</span> = <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">target</span>.<span class="property">textContent</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVMxUQlEXX-zO4pa/root/content" alt="content" style="zoom:68%;" />   
+
+<h2 id="常见的键盘事件"><a href="#常见的键盘事件" class="headerlink" title="常见的键盘事件"></a>常见的键盘事件</h2><p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVSxL9rSsBFVn-p8/root/content" alt="content"> </p>
+<p>执行顺序：</p>
+<ol>
+<li>down事件先发生</li>
+<li>press发生在文本被实际输入</li>
+<li>up发生在文本输入完成，键盘抬起</li>
+</ol>
+<p>可以使用event对象中的code和key来区分按下的键；</p>
+<h2 id="常见的表单事件"><a href="#常见的表单事件" class="headerlink" title="常见的表单事件"></a>常见的表单事件</h2><p><img src="https://api.onedrive.com/v1.0/shares/s!ArM6DFv6gNYQgVVVXmQaWjnDQxgm/root/content" alt="content"></p>
+<h2 id="文档加载监听"><a href="#文档加载监听" class="headerlink" title="文档加载监听"></a>文档加载监听</h2><ol>
+<li>DOMContentLoaded：内容加载完成，即浏览器已完全加载HTML，并构建了DOM树，但像<img>和样式表之类的外部资源可能尚未加载完成。</li>
+<li>load：所有资源都加载完成（包括外部资源）</li>
+</ol>
+<h2 id="window定时器方法"><a href="#window定时器方法" class="headerlink" title="window定时器方法"></a>window定时器方法</h2><p>有i时候不希望立即执行一个函数，而是想等待一段时间再执行，这就是”计划调用“。</p>
+<ol>
+<li>setTimeout</li>
+<li>setInterval</li>
+</ol>
+<p>上面的定时器对应的取消方法：</p>
+<ol>
+<li>cleatTimeout：取消setTimeout的定时器</li>
+<li>clearInterval：取消setInterval的定时器</li>
+</ol>
+<p>let timerId &#x3D; setTimeout(func|code, [delay], [arg1], [arg2], …)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> timerId = <span class="built_in">setTimeout</span>(...);</span><br><span class="line"><span class="built_in">clearTimeout</span>(timerId);</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">事件流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">事件对象解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E6%AD%A2%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="toc-number">3.</span> <span class="toc-text">阻止默认行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92"><span class="toc-number">4.</span> <span class="toc-text">阻止事件传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%B8%AD%E7%9A%84this"><span class="toc-number">5.</span> <span class="toc-text">事件处理函数中的this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EventTarget%E7%B1%BB"><span class="toc-number">6.</span> <span class="toc-text">EventTarget类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98"><span class="toc-number">7.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6"><span class="toc-number">8.</span> <span class="toc-text">常见的鼠标事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mouseenter%E5%92%8Cmouseover%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.1.</span> <span class="toc-text">mouseenter和mouseover的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mouseenter%E5%92%8Cmouseover%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">8.2.</span> <span class="toc-text">mouseenter和mouseover的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text">常见的键盘事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6"><span class="toc-number">10.</span> <span class="toc-text">常见的表单事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E5%8A%A0%E8%BD%BD%E7%9B%91%E5%90%AC"><span class="toc-number">11.</span> <span class="toc-text">文档加载监听</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window%E5%AE%9A%E6%97%B6%E5%99%A8%E6%96%B9%E6%B3%95"><span class="toc-number">12.</span> <span class="toc-text">window定时器方法</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&text=学习JavaScript事件处理"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&is_video=false&description=学习JavaScript事件处理"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=学习JavaScript事件处理&body=Check out this article: https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&title=学习JavaScript事件处理"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&name=学习JavaScript事件处理&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qinronghai.github.io/2023/09/12/%E5%AD%A6%E4%B9%A0JavaScript%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/&t=学习JavaScript事件处理"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    AHAI
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/qinronghai">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
